@@ -1,0 +1,133 @@
+
+Less Sour	More Sour
+Mother culture	white flour
+mature when fully risen
+ferment at 70-76F / 21-24C (when not stored in the refrigerator)	some rye and/or whole wheat flour
+mature after fully risen
+ferment at 82-85F/ 28-29C (when not stored the refrigerator)
+Pre-ferment
+white flour
+ripe at or before peak rise
+ferment at 70-76F / 21-24C	some rye and/or whole wheat flour
+ripe after peak rise
+ferment at 82-85F/ 28-29C
+Main Dough	less whole grain / rye flour
+rise to 1½ – 2 times volume
+ferment at 70-76F / 21-24C	more whole grain and/or rye flour
+rise to 2¼-3 times volume
+ferment at 82-85F/ 28-29C
+Final Shaped Proof	ferment at 70-76F / 21-24C	ferment at 82-85F/ 28-29C
+retard at 40-50F / 4-10C
+Sources: Debra Wink, Michael Gänzle, Brød & Taylor
+
+Hamelman-pain-au-levain-for-web
+Delicately flavored Pain au Levain has lower acidity and less whole grain, which allows a more open crumb.
+
+Temperature.  Temperature is the one variable that bakers can control at every stage of the bread making process, from Mother culture through the final shaped proof. It’s an easy variable to manage using water temperature and a Proofer.
+
+For less acidity, use water at around 80F / 27C and a Proofer setting of 70-76F / 21-24C to favor the yeast and create milder flavors. When the Mother culture is being kept at room temperature (for instance, for a few feeds leading up to bread making), consider giving it one or two short feed cycles, rising at 75F just until peaked.
+For more acidity, use 90F / 32C water and consider fermenting the Mother culture (when not in the refrigerator) and pre-ferment at about 82-85F/ 28-29C, which is warm enough to begin to give desirable acid-producing bacteria (LAB) an edge. Yet it won’t be hot enough to damage yeast populations, which are necessary for the ongoing health of the Mother culture and for good structure and rise in the bread.
+Whole Grain and Rye Flours. Whole grain and rye flours provide minerals and enzymes that can influence acid production in sourdoughs. The higher mineral content of whole grains acts as a buffer in the dough so that more acid can be produced during extended fermentation. And the complex carbohydrate and enzyme content of rye flour helps produce unique sugars that tip the balance of acids in favor of acetic acid, which has more aroma and flavor and is more noticeable in the dough than lactic acid.
+
+For milder sourdough, use less whole wheat and less rye, or consider sifting the bran out of whole wheat flour to create high-extraction flour. If using small amounts of whole grain, save it for the main dough, where it will have less time to contribute to acidity.
+For more tang, incorporate some rye flour and/or whole wheat flour early in the bread-making process, such as regular Mother culture feeds and the pre-ferment. Rye flour in particular will help your culture produce some acetic acid.
+Graph of Sourdough MaturityMaturity.  In our experience, tweaking maturity is a highly effective way to control sourdough flavor. This applies to refreshing the Mother culture, fermenting the pre-ferment and rising the main dough (bulk fermentation). It does not apply to the final proof, because the point at which the shaped loaf is ready to bake should only be determined by the balance between gas production and structure. As Ms. Wink taught in her class, the reason maturity is so effective is that the acid producers (LAB) have a faster growth rate than yeast, so harvesting the culture when it is more ripe quickly shifts the population balance towards greater numbers of LAB.
+
+To limit acidity, refresh the Mother culture when it has just risen to its final height. Similarly, harvest the pre-ferment when it has just peaked or even before the peak, and limit the main dough (bulk) fermentation to a doubling of volume.
+To push for more acidity, allow the Mother culture to rest at its peak rise height for a while before refreshing. During the rest, the yeast population will hold steady while the acid producers (LAB) grow. Allow the pre-ferment to do the same – rest for a period after reaching its peak rise, then use it to mix the main dough. For the main dough (bulk fermentation), rise the dough to more than double its volume.  Many sourdoughs can rise to 2½ times their starting volume and some will do great with a threefold rise.
+In part two of this series, we use these factors to play with our tried-and-true Country Sourdough Recipe.
+
+Bread & Sourdough|15 Comments
+Share This Story, Choose Your Platform!
+FacebookTwitterLinkedinRedditTumblrGoogle+PinterestVkEmail
+Related Posts
+ Toasted Oat Dinner Rolls Recipe Chocolate Hazelnut Babka Recipe Cranberry Pecan Boule Recipe Country Wheat Sandwich Bread Recipe Bread Rising Tips
+15 Comments
+
+Rob December 1, 2014 at 9:02 pm	- Reply
+The problem with this is that if you speed up the fermentation, you are making the bread, overall, less healthy. I have read from several sources that sourdough should ferment for a minimum of 8 hours (the dough not the preferment). At 85º, it’s going to be an overproofed soupy mess by then, no??
+
+Julie December 2, 2014 at 1:20 pm	- Reply
+Rob, thanks for your interest. Regarding that 8-hour guideline, the activity of microbial populations is strongly affected by temperature. For instance, the amount of fermentation that takes place in eight hours at 68F, might be about the same as the amount that takes place in four hours at 83F. In addition to temperature, fermentation is also affected by which flours are used, the amount of salt in the formula, and the amount of water.
+
+We’ve seen that eight-hour guideline made for reducing phytic acid in wheat. Current knowledge suggests that one of the key factors for neutralizing phytic acid is the presence of an acid, such as buttermilk, yogurt, or the naturally occurring acids in sourdough. To the extent that warmer temperatures help boost acid in sourdough fermentation, it may be that a shorter fermentation at warmer temperatures is equally – or even more – effective at neutralizing phytic acid than a longer fermentation at cooler temps.
+
+Warm regards,
+Julie
+
+Julissa Jumper January 19, 2015 at 2:34 pm	- Reply
+I am trying to figure out the least sourdough taste while maintaining the sourdough’s ability to neutralize phytic acid. That’s my reason for doing sourdough, not for the flavor but for the fact that it neutralizes the phytic acid. How do I reach that happy medium?
+
+Julie January 21, 2015 at 5:17 pm	- Reply
+That’s a very interesting question! It’s a bit tricky because the acid in a sourdough culture is involved in the reduction of phytic acid, and the acid is also what gives sourdough its distinctive flavor. So reducing the sour flavor will also reduce the culture’s ability to neutralize phytic acid. Some people find the acidity of a liquid starter to be less noticeable than that of a firm starter, and choosing temps in the 70s (rather than warmer temps) can help keep the acidity from becoming too pronounced. In addition to choosing a liquid starter and cooler temps, here are a few thoughts:
+
+-you might try putting the whole grain portion of your dough into the starter build (the levain), so that it has plenty of time to ferment, but following the other suggestions for creating less acidity. Whiter flours do not need so much time and can be added into the main dough. (Whole grain flours have higher phytic acid content than white flours.)
+
+-Explore flours that are naturally lower in phytic acid, such as sprouted whole wheat flour (available from Arrowhead Mills or King Arthur Flour), medium rye flour and unbleached white flours. Flours made from sprouted gain have lower phytic acid.
+
+-Finally, adding flavoring agents such as raisins or olives to your doughs can harmonize with the natural acidity of sourdough and help balance out the acidity and make it more appealing.
+
+jacob bragg March 5, 2015 at 6:09 pm	- Reply
+I have been trying pizza dough with fermentation. Making different doughs and tasting at different lengths of time to find which starter I like the flavor of best. I was wondering if I wanted to speed up the process and just see what the flavor of a specific strain is going to taste like, could I start with a mix that is higher in poolish. rather than, flour water and starter, could I just use poolish and and more flour to bring it to proper hydration level? Would that give me a indicator of the ripe flavor of the starter?
+
+Julie March 6, 2015 at 2:41 pm	- Reply
+Hi Jacob, sounds like you’re having fun experimenting with sourdough pizza! You can get a good idea of the flavor of a starter by doing what you describe; you’ll need to knead it (or fold it) and let it rise after adding flour/salt in order to get decent structure.
+
+Regarding testing different types or strains of sourdough, remember that after a little time in your kitchen, any starter’s flavor will reflect your maintenance regime more than the source from which it came. And if you’re testing things like a change in hydration, temperature or flour, it takes about 9-10 days of room temperature maintenance for the starter to fully reflect the change.
+
+Enjoy!
+
+Doc July 6, 2015 at 3:29 am	- Reply
+The length of time that it takes to fully reflect the changes in a starter is a strong function of the refresh ratio. If you are using 2:1:1 (2 parts starter; 1 part water; 1 part flour) then you have 50% new starter after each refresh cycle, 75% after two, 87.5% after three, etc. If you use a 1:130:130 (which will take a full 24 hrs to come back to equilibrium at typical summer daytime temperatures of low 80’s °F), you have less than 0.5% old starter at the end of one refresh cycle (99.5% new starter). So in a couple of days you can have a complete new starter with only traces of the original. Thus if you are going to make a rye starter from a white starter it will go very quickly.
+
+Dean July 7, 2016 at 9:04 pm	- Reply
+Interesting idea. However it assumes that the microbes in the starter are no more active than the microbes in the flour added to the minute quantity of starter. This is not the case. Established microbe colonies will always be more aggressive than what is being added to them and will tend to fend off “invaders.” If you recall when you made your first starter it had no established, stable colonies and after 24 hours there still was very little that was stable, even if it appeared there was. Following your formula, one would definitely have a “new” starter, but not quite as new as you might think. After refreshing the starter at the new rate, the established colonies will very quickly overtake the invasive dormant CFUs before they get the chance to grab a foothold.
+
+Ryan October 15, 2015 at 5:31 pm	- Reply
+I just started using sourdough starter to make sourdough bread back in July. I have been making quick rise yeast breads almost every week for the last 3-4 years. My first 3 weeks of sourdough bread were very, very sour… almost too sour. About the 4th or 5th week of making bread it lost it’s sourness. I was thinking the sourness was from the battle of yeast and bacteria the first week being left out in room temperature for 6 strait days. Then after 3 to 4 weeks of using 2/3 to 3/4 of the starter in my bread, I worked out all the dead bacteria lased mix so now my starter has becoming not only mature but more of a pure yeast culture.
+
+Feeding my starter consists of mixing whole wheat flour back into the starter with some bottled water keeping it a little thicker than pan cake mix. I leaving it set out 2-3 hours for the yeast to grow and produce alcohol to keep any bacteria from growing in the mix. Then I store it in the back of the refrigerator.
+
+I make by bread dough from the starter the night before, about 1 cup per loaf and let it rise in the unheated oven over night, 7-8 hours. I punch I down and divide it into two loves and then let it rise again for 3-5 hours in the oven warmed with the light on and then bake when risen enough. Sometimes I make hamburger buns.
+
+Julie October 15, 2015 at 8:10 pm	- Reply
+Sounds like you’ve been learning a lot about sourdough!
+
+In our experience, two of the most effective ways to control acidity in sourdough are temperature and maturity.
+
+If you want more sour, allow your starter to ferment at warmer temperatures, and allow it to rise to its fullest height and rest there until it just begins to fall back.
+
+As to why your bread became less sour, we don’t have enough information to pinpoint it. It’s likely that the combination of being refrigerated and the maturity that you allowed it to rise to played a role.
+
+Good luck with your sourdough!
+
+sam April 9, 2016 at 3:38 pm	- Reply
+Hi everyone and thank you for the valuable information that each and everyone provided. I own a pizza joint and since I started to feed my kids healthier sourdough pizzas and bread I thought I should extend that to the public at no higher cost. My kids got used to the flavor and they love it. However, when it comes to business it’s hard to take chances. anyway to make a long story short, some of my customers are complaining of the slight sourness in their pizzas, although I explained the reason, most like it the commercial way ie. using commercial yeast.
+
+Now I’ve tried to fix the problems by doing the following but without much success. So if anyone could help me to reduce the sourness I’ll be very thankful. The way I do my dough are as follows:
+
+1. I feed my my white flour starter at ratio 2 starter:1 white flour: 1 water at around 7 pm at a 24-27 C.
+2. At around midnight I make my dough using 20% sourdough of the flour weight. so 1 KG flour I use 800 grams flour and 400 grams sourdough.
+3. I cut it into balls.
+4. I leave it to rise until 9-10 a.m. next morning.
+5. At 9-10 A.M. morning, I leave few balls out to prepare for orders and put the rest in the refrigerator. As I run out of dough balls I bring some out of the refrigerator and let them set for two hours before shaping.
+
+The result is some sourness which I don’t want because my customers don’t want it that way, but at the same time I really want to benefit them from the benefits that the sourdough brings.
+
+Could anyone help me? Can I do something to lessen the sourness of the dough. Many Thanks to all.
+
+Diane April 12, 2016 at 6:17 pm	- Reply
+Proofing the dough in the refrigerator does slow down fermentation considerably. However, while you have more flexibility as to when you can bake, the longer time you leave sourdough in the refrigerator the more sour/tangy taste it can develop. Use a lower temperature setting on the Folding Proofer (72F / 22C) to encourage less acidity. Also, you may find Part II helpful: “How to Make Sourdough More (or Less) Sour”: https://brodandtaylor.com/make-sourdough-more-or-less-sour-part-2/ Good luck with your sourdough efforts.
+
+Missy Ferguson February 28, 2017 at 12:07 pm	- Reply
+I love long-fermented sourdoughs because bread made very slowly feels super nourishing. But sometimes I miscalculate, things drag on too long, and the bread gets to be so sour that my family won’t eat it. You can tell it’s going that way by tasting the dough as it develops. If it tastes overly sour, knead in some baking soda. Do this just before you shape loaves for the final rise. For a 1 kg of dough, use about 5 grams (1 tsp) baking soda, stirred into about 15 gram (1 Tbsp) water. Increase or reduce the amount of soda to more radically or subtly tone down the tang. Soda doesn’t impede the neutralization of phytic acid because it is introduced at the very end of the process. The soda seems to help the final rise, by the way. This use of baking soda is totally traditional in Alaska.
+
+Diane March 22, 2017 at 4:58 pm	- Reply
+Missy Ferguson, Thank you for sharing and all the best to you in making the perfect sourdough for your family.
+
+Chantal July 12, 2017 at 12:56 pm	- Reply
+Thank you for sharing this information. I’ve been experimenting with gluten-free vegan sourdough. My loaves are getting better and better in flavour and texture. I was curious about the sourdough taste because it’s the only thing my kids don’t particularly love about sourdough. Compared to my first trials a few months ago the sourness has improved by so much. Even my starter smells wonderful!
+Leave A Comment
+Comment
+
+
