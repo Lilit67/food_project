@@ -15,6 +15,7 @@ class Recipe(object):
         self.sheet = options.sheet
         self.workbook = options.workbook
         self.recipe = self.reader.read_xl()
+
         self.df_manager = RecipeTree()
         # set the root as original recipe
         self.df_manager.add_node(self.recipe)
@@ -82,6 +83,11 @@ class Recipe(object):
         dfList = [x for x in dfList if x]
         return dfList
 
+    def total_time(self, df):
+        """ Return sum of the column time """
+        # TODO: what if user do not put any time?
+        # smart calculation? Think about it
+        pass
 
     def scale_ingredients_df(times):
         """
@@ -102,8 +108,8 @@ class Recipe(object):
         """
         Set value at specific location,
         operation is done on same dataframe
-
-        Faster alternative: df.set_value('C', 'x', 10)
+        index can be multiindex
+        Faster alternative: df.set_value('C', 'x', 10) - deprecated?
         :param df:
         :param col:
         :param row:
@@ -114,13 +120,10 @@ class Recipe(object):
         if not isinstance(df, pd.DataFrame):
            raise Exception("First paramemter should be of type dataframe")
         #df.loc['[21-23)', 'M', '[10000-20000)'] = 2
-        #df = df.at[row, col] = val
-
         df.loc[index, col] = val
         return df
 
     # FORMATING and OUTPUT
-
     def df_to_json(self, df):
         json_obj = df.to_json(orient='records')
         return json_obj

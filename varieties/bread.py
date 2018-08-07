@@ -41,6 +41,8 @@ class Bread(Recipe):
         Recipe.__init__(self, options)
         self._logger = logging.getLogger(self.__class__.__name__)
         self.original = self.recipe
+        if self.recipe.empty:
+            raise Exception('Your recipe is empty!')
         df = self.clean_data(self.recipe)
         self._hydration = self.hydration(df)
 
@@ -69,8 +71,6 @@ class Bread(Recipe):
                         i += 1
                     continue
 
-
-
     def fill_usda(self, df):
         """
         TODO: Use helpers to get exact fields from usda module
@@ -89,11 +89,9 @@ class Bread(Recipe):
                     print(found_code, found_name)
                     df.loc[index, cn.code] = found_code
                     df.loc[index, cn.usda_name] = found_name
-
-
         return df
 
-    def fill_usdaOrig(self, df):
+    def fill_usdaOrignotused(self, df):
         """
         TODO: Use helpers to get exact fields from usda module
         :param df:
@@ -136,7 +134,7 @@ class Bread(Recipe):
         for c in column_names:
             if c not in existing_cols:
                 df[c] = [0] * i_len
-        #print('After adding missing columns {}'.format(df))
+        self._logger.info('Added missing columns, {}'.format(df))
 
     def clean_data(self, df):
         self.add_missing_columns(df)
@@ -159,6 +157,7 @@ class Bread(Recipe):
         return df
 
     def check_columns(self, df):
+        """ Check if all columns are there """
         cols = self.columns(df)
         all = cn.get_ordered()
 
@@ -196,9 +195,6 @@ class Bread(Recipe):
     def set_bakers_percents(self, df):
         df1 = df.reset_index()
         for index, row in df.iterrows():
-            #print('iterrows')
-            #print(index, row)
-
             ingredient = row[cn.ingredient]
 
             if ingredient:
@@ -254,11 +250,11 @@ class Bread(Recipe):
         weight = self.get_at(dfs, ingredient, cn.weight)
         return weight
 
-    def get_weight(self, df, ingredient):
+    def get_weight(self, df, ingredient, index):
         """ not used"""
-        # record = self.get_at('amount', ingredient)
-        this_weight = df.loc[ingredient, cn.weight]
-        return this_weight
+
+        weight = df.loc[ingredient, cn.weight]
+        return weight
 
 
     def weight_from_percent(percent, total_weight):
@@ -297,6 +293,8 @@ class Bread(Recipe):
     def flours_ingredients_weight(self, df):
         """ Flours weight in baked recipe """
         flour = self._get_matching_records(df, flours)
+        if flour.empty:
+            raise Exception("Flour not found for bread product, something is wrong!")
         flours_weight = sum(flour.amount.values)
         self._logger.info('Flours weight is '
                           '{} {}'.format(flours_weight, unit.gram))
