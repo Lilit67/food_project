@@ -36,10 +36,19 @@ def recordAudio():
 
     return data
 
+ingredient = []
 
 def jarvis(data):
-    if "how are you" in data:
-        speak("I am fine")
+    if 'record' in data:
+        speak('recording, say starting with "ingredient" or "step"')
+
+    if 'ingredient' in data:
+        ingredient.append(data)
+        speak('next ingredient?')
+
+    if "done" in data:
+        speak("OK, done")
+        print(ingredient)
 
     if "what time is it" in data:
         speak(ctime())
@@ -49,7 +58,7 @@ def jarvis(data):
         location = data[2]
         speak("Hold on Frank, I will show you where " + location + " is.")
         os.system("chromium-browser https://www.google.nl/maps/place/" + location + "/&amp;")
-    if "get me a bread recipe" in data:
+    if "get" and "recipe" in data:
         data = data.split(" ")
         speak("What kind of bread recipe do you want?")
         data = 'mm'
