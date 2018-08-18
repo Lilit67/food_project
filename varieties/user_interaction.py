@@ -35,7 +35,7 @@ def main():
         logger.debug('Starting...')
         bread = Bread(args)
 
-        exit(0)
+
         changed = bread.change_hydration(90, bread.recipe)
         changed = bread.change_hydration(50, changed)
         print(changed)

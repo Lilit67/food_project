@@ -22,9 +22,18 @@ class ColumnNames:
                 ColumnNames.step_description,
                 ColumnNames.time_in_minutes, ColumnNames.brand,
                 ColumnNames.manufacturer, ColumnNames.temperature,
-                ColumnNames.time_in_minutes
+                ColumnNames.time_in_minutes, ColumnNames.BP,
+                ColumnNames.code, ColumnNames.usda_name
                 ]
 
     @staticmethod
     def column_names():
         return ColumnNames.get_ordered()
+
+
+    @staticmethod
+    def min_columns():
+        return [ColumnNames.step_no,
+                ColumnNames.ingredient,
+                ColumnNames.weight,
+                ColumnNames.unit]

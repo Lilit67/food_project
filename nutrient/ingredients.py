@@ -7,7 +7,9 @@ flours = ['wheat flour', 'rye flour', 'rye', 'wheat',
        'white wheat flour', 'high gluten', 'bakers flour',
           'high extraction flour',
           'white wheat flour (bread flour)',
-          'white wheat flour(bread flour) (100 %)']
+          'white wheat flour(bread flour) (100 %)',
+          'Bread flour', '50/50 blend flour', 'All purpose flour',
+          'All-purpose flour', 'whole rye flour']
 
 # rest of dry ingredients
 condiments = ['salt', 'sugar', 'kosher salt',
@@ -18,19 +20,24 @@ condiments = ['salt', 'sugar', 'kosher salt',
 # waters
 wet = ['water', 'egg', 'butter', 'milk', 'yoghurt',
        'purified water', 'eggs', 'egg whites',
-       'cold water', 'scaled milk', 'kefir']
+       'cold water', 'scaled milk', 'kefir', 'warm milk',
+       'honey']
 
-
+non_usda = ['water', 'starter', 'salt']
 
 starter = ['starter', 'white starter',
            'whole wheat starter',
            'gf starter', 'levain',
-           'poolish', ]
+           'poolish', 'leaven', 'starter 100%', 'starter 50/50']
 
 # oils, should also go as wet
 butter = ['butter', 'european butter',
           'butter packet', 'oil',
-          'melted butter', 'salted butter']
+          'melted butter', 'salted butter',
+          'vegetable oil', 'olive oil',
+          'clarified butter', 'ghee']
+
+milk = ['cold milk', 'milk', 'buttermilk', 'yoghurt']
 
 wheat = ['wheat', 'whole wheat', 'white wheat']
 

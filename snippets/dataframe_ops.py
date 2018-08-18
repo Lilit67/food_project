@@ -63,3 +63,17 @@ def set_cell_at_index(df, index, col, val):
     # TODO: necessary checks...
     df.loc[index, col] = val
     return df
+
+def inspect_data(self, df):
+    """ Count nulls in df """
+    col_nulls = df.isnull().sum()
+    cols = df.columns
+    for col in cols:
+        pass
+
+def drop_empty_cols(self, df):
+    df.dropna(axis=1, how='all')
+    return df
+
+def drop_empty_rows(self, df):
+    df.dropna(axis=0, how='all')

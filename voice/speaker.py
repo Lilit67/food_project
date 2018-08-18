@@ -60,8 +60,8 @@ def jarvis(data):
         os.system("chromium-browser https://www.google.nl/maps/place/" + location + "/&amp;")
     if "get" and "recipe" in data:
         data = data.split(" ")
-        speak("What kind of bread recipe do you want?")
-        data = 'mm'
+        speak("What kind of bread recipe to get?")
+        data = 'white'
         find_recipe(data)
     if "lets start cooking" in data:
         data = data.split(" ")

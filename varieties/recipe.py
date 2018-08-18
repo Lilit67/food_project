@@ -21,7 +21,7 @@ class Recipe(object):
         self.df_manager.add_node(self.recipe)
         self._logger = logging.getLogger(__class__.__name__)
 
-    def clean_data(self):
+    def clean_data(self, df):
         """ Override """
         raise Exception('This function should be overriden')
 
@@ -123,6 +123,17 @@ class Recipe(object):
         df.loc[index, col] = val
         return df
 
+    def get_at(self, df, row, col):
+        """
+        Return value at row, column
+
+        :param col:
+        :param row:
+        :param val:
+        :return:
+        """
+        return df.loc[row, col]
+
     # FORMATING and OUTPUT
     def df_to_json(self, df):
         json_obj = df.to_json(orient='records')
@@ -135,10 +146,10 @@ class Recipe(object):
         :return:
         """
         original_file_name = os.path.split(self.workbook)[-1]
-        writer = pd.ExcelWriter('./output/' + original_file_name + '_output.xlsx')
+        writer = pd.ExcelWriter('./output/' + original_file_name + '_2.xlsx')
         df.to_excel(writer, self.sheet + '_original')
         self.recalculated = df
-        self.recalculated.to_excel(writer, self.sheet + '_recalculated recipe')
+        self.recalculated.to_excel(writer, self.sheet + '_rec')
         writer.save()
 
     def df_to_json_old(self, df):

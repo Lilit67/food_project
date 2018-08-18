@@ -42,15 +42,21 @@ class Bread(Recipe):
         self._logger = logging.getLogger(self.__class__.__name__)
         self.original = self.recipe
         if self.recipe.empty:
-            raise Exception('Your recipe is empty!')
-        df = self.clean_data(self.recipe)
+            raise Exception('Recipe is empty!')
+        df = self.original
+        df = self.remove_empty_rows_columns(df)
+        min_cols = cn.min_columns()
+        df = self.leave_these_columns(df, min_cols)
+        print(df)
+
+        #df = self.clean_data(df)
         self._hydration = self.hydration(df)
 
         self._water_weight = self.wet_weight(df)
 
-        df1 = self.set_bakers_percents(df)
-        print('REturned from setting bakers percents {}'.format(df1))
-        df2 = self.fill_usda(df1)
+        df = self.set_bakers_percents(df)
+        print('Returned from setting bakers percents {}'.format(df))
+        df2 = self.fill_usda(df)
         print('After filling usda {}'.format(self.df_to_matrix(df2)))
 
     def record(self, df):
@@ -62,26 +68,18 @@ class Bread(Recipe):
         """
         self.df_manager.add_node(self.latest, df)
 
-    def find_substring_outer(self, stringlist, inputstring):
-        for onestring in stringlist:
-            i = 0
-            for ch in inputstring:
-                while i < len(onestring):
-                    if ch == inputstring[i]:
-                        i += 1
-                    continue
-
     def fill_usda(self, df):
         """
-        TODO: Use helpers to get exact fields from usda module
+        Fills in the usda database
+        query results
         :param df:
         :return:
         """
         usda = UsdaReader()
         for index, row in df.iterrows():
             ingredient = row[cn.ingredient]
-            if ingredient:
-                print(row['ingredient'], row['amount'], index)
+            if self.cell_valid(ingredient, celltype=str):
+                #print(row['ingredient'], row['amount'], index)
                 found_info = usda.get_product_info(ingredient)
                 if found_info:
                     found_code = found_info.get('ndbno')
@@ -89,23 +87,9 @@ class Bread(Recipe):
                     print(found_code, found_name)
                     df.loc[index, cn.code] = found_code
                     df.loc[index, cn.usda_name] = found_name
+        #print(df)
         return df
 
-    def fill_usdaOrignotused(self, df):
-        """
-        TODO: Use helpers to get exact fields from usda module
-        :param df:
-        :return:
-        """
-        usda = UsdaReader()
-        for name in self.ingredient_names(df):
-            found_info = usda.get_product_info(name)
-            if found_info:
-                found_code = found_info.get('ndbno')
-                found_name = found_info.get('name')
-                self.set_at(df, col=cn.code, row=name, val=found_code)
-
-        return df
 
     def set_ingredient_types(self, df):
         for name in self.ingredient_names(df):
@@ -113,31 +97,48 @@ class Bread(Recipe):
                 self.set_at(df, col='type 1', row=name, val='dry')
         return df
 
-    def get_at(self, df, row, col):
-        """
-        Return value at row, column
-
-        :param col:
-        :param row:
-        :param val:
-        :return:
-        """
-        return df.loc[row, col]
-
 # DATA CLEANUP, MISSING DATA
 
     def add_missing_columns(self, df):
+        """
+        Add missing from the whole list.
+        Do not use it until better
+        cleanup and reading can be done
+        """
         existing_cols = self.columns(df)
         ingredients = self.get_ingredients(df)
         i_len = len(ingredients)
         column_names = cn.column_names()
+        #print(column_names)
         for c in column_names:
             if c not in existing_cols:
                 df[c] = [0] * i_len
         self._logger.info('Added missing columns, {}'.format(df))
+        return df
+
+    def remove_empty_rows_columns(self, df):
+        df1 = df.dropna(thresh=2)
+        df2 = df1.dropna(axis=1, how='all')
+        return df2
+
+    def leave_these_columns(self, df, min_cols):
+        """
+        Remove all but the minimum columns
+        with data: ingredient, step, amount, unit
+        :param df:
+        :return:
+        """
+        all_cols = self.columns(df)
+        to_drop = []
+        for col in all_cols:
+            if col not in min_cols:
+                to_drop.append(col)
+        df1 = df.drop(to_drop, axis=1)
+        return df1
+
 
     def clean_data(self, df):
-        self.add_missing_columns(df)
+        df = self.add_missing_columns(df)
         df[cn.weight].fillna(0, inplace=True)
         df[cn.step_no].fillna(method='ffill', inplace=True)
         df[cn.step_name].fillna(method='ffill', inplace=True)
@@ -156,11 +157,6 @@ class Bread(Recipe):
         #print("After cleaning data {}".format(df))
         return df
 
-    def check_columns(self, df):
-        """ Check if all columns are there """
-        cols = self.columns(df)
-        all = cn.get_ordered()
-
     def nan_to_zeros(self, nan_number):
         """ First reindex, then set to 0 every NaN"""
         return int(money_str.replace(math.nan, 0))
@@ -177,7 +173,7 @@ class Bread(Recipe):
 #CALCULATION
 
     def is_bread(self, df):
-        """ get the flours ingredient and find if it is the most"""
+        """ Very smart """
         ingredients = self.ingredient_names(df)
         return True
 
@@ -193,22 +189,25 @@ class Bread(Recipe):
 
 
     def set_bakers_percents(self, df):
-        df1 = df.reset_index()
-        for index, row in df.iterrows():
+        df1 = df #df.reset_index()
+        for index, row in df1.iterrows():
             ingredient = row[cn.ingredient]
 
-            if ingredient:
-                bakers_percents = self.bakers_percent(df1, ingredient=ingredient)
+            if self.cell_valid(ingredient, celltype=str):
+                bakers_percents = self.bakers_percent(df, ingredient)
                 bp = int(bakers_percents)
-                df1.loc[index, 'BP'] = bp
+                df1.loc[index, cn.BP] = bp
                 # this sets all column
                 #df.loc[df.ingredient != "", 'BP'] = bp
         print('After setting BP-s: {}'.format(df1))
         return df1
 
+    def cell_valid(self, ingredient, celltype=str):
+        return isinstance(ingredient, celltype)
 
     def bakers_percent(self, df, ingredient):
         """
+        TODO: smart function for flours, or else?
         Bakers percent per ingredient
         Bakers percent is the percentage of
         the specific igredient against the
@@ -220,8 +219,11 @@ class Bread(Recipe):
         :return: int
         """
 
-        # TODO: smart function for flours, or else?
+        if not self.cell_valid(ingredient, celltype=str):
+            return 0
+
         flours_weight = self.flours_ingredients_weight(df)
+        #print('Flours weight {}'.format(flours_weight))
         weight = self.ingredient_weight(df=df, ingredient=ingredient)
         self._logger.info('Weight of: {} is: {}'.format(ingredient, weight))
 
@@ -277,7 +279,7 @@ class Bread(Recipe):
         wets = self._get_matching_records(df, wet)
         wet_wright = sum(wets.amount.values)
         self._logger.info('Wet ingredients weight: {} {}'.format(wet_wright, unit.gram))
-        print('In wet_weight, dataframe is: {}'.format(df))
+        #print('In wet_weight, dataframe is: {}'.format(df))
         return wet_wright
 
     def total_weight(self, df):
@@ -286,13 +288,15 @@ class Bread(Recipe):
         :return:
         """
         total = df[cn.weight].sum()
-        self._logger.info('Total weight of product is {}'.format(total))
+        self._logger.info('Total ingredients weight in this recipe is {}'.format(total))
         return total
 
 
     def flours_ingredients_weight(self, df):
         """ Flours weight in baked recipe """
         flour = self._get_matching_records(df, flours)
+        #print('Flour ingredients found: {}'.format(flour))
+        #print('Flour names found: '.format(flour.ingredient))
         if flour.empty:
             raise Exception("Flour not found for bread product, something is wrong!")
         flours_weight = sum(flour.amount.values)
@@ -516,7 +520,11 @@ class Bread(Recipe):
         :return:
         """
         ingredients = self.ingredient_names(df)
+        print(ingredients)
         for ingredient in ingredients:
+            print(ingredient)
+            if not ingredient:
+                continue
             current_amount = self.ingredient_weight(ingredient=ingredient, df=df)
             self.set_at(df, cn.weight, ingredient, current_amount * times)
         self.versions.append(df)
@@ -531,6 +539,33 @@ class Bread(Recipe):
         ingredients = self.ingredient_names(df)
 
         return True
+
+    def convert_yeast_to_starter(self, df):
+        """ Works for breads only"""
+        if not self.is_bread(df):
+            raise Exception("Cannot correctly calculate"
+                            " yeast to starter convertion of "
+                            "multi-ingredient recipe")
+        yeast = self.get_yeast(df)
+        if not yeast:
+            raise Exception('This recipe does not contain yeast')
+        water = self.get_waters(df)
+        flour = self.get_flour(df)
+        extras = self.get_others(df)
+        if extras:
+            raise Exception("Cannot correctly calculate"
+                            " yeast to starter convertion of "
+                            "multi-ingredient recipe "
+                            "with extras {}".format(extras))
+        total = water + flour
+        starter = total / 6
+        starter_flour = starter / 2
+        starter_water = starter / 2
+        new_flour = flour - starter_flour
+        new_water = water - starter_water
+
+
+
 
 
 def parse_options():

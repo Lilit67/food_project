@@ -5,7 +5,7 @@ import json
 import math
 import logging
 from nutrient.foodinfo import Nutrient
-from nutrient.ingredients import usda_group_item_map
+from nutrient.ingredients import usda_group_item_map, non_usda
 
 
 class UsdaReader:
@@ -16,30 +16,6 @@ class UsdaReader:
         if not os.path.isdir(self.cache_root):
             os.makedirs(self.cache_root)
 
-
-    @staticmethod
-    def usda_db_flours(flour_names):
-        """
-        as much info as user knows
-        to make a better search.
-
-        :param flour_names:
-        :return: list
-        """
-
-        nu = Nutrient()
-        res = nu.searchFor("wheat flour", fg="Cereal Grains and Pasta", mx=None, ds="SR")
-        l = res['list']
-        flours = [x['name'] for x in l['item']]
-        return flours
-
-    @staticmethod
-    def usda_salts(salt_names):
-        nu = Nutrient()
-        res = self.nu.searchFor("salt")
-        l = res['list']
-        flours = [x['name'] for x in l['item']]
-        return flours
 
     def get_usda_code(self, usda_item):
         """
@@ -62,7 +38,7 @@ class UsdaReader:
         self._logger.info('Found {} records for name '
               '"{}"'.format(len(items), usda_item))
         self._logger.info('*****')
-        if len(items) >=3:
+        if len(items) >= 3:
             self._logger.info(items[:3])
         if items:
             product = items[0]
@@ -86,7 +62,14 @@ class UsdaReader:
     def pretty_print(self, item):
         print(json.dumps(item, indent=4))
 
+
+    def adjusted_item_name(self, item_name):
+        item_name = item_name.replace('/', '-')
+        item_name = item_name.replace(' ', '_')
+        return item_name
+
     def cache_path(self, item_name):
+        item_name = self.adjusted_item_name(item_name)
         return os.path.join(self.cache_root, str(item_name) + '.json')
 
     def get_product_info(self, item_name):
@@ -103,7 +86,7 @@ class UsdaReader:
         """
 
         if not isinstance(item_name, str): #math.isnan(float(item_name)):
-            print('Item name should be a string')
+            print('Item name should be a non empty string')
             return None
         item_group = self.get_usda_group(item_name)
         cache_path = self.cache_path(item_name)
@@ -117,6 +100,15 @@ class UsdaReader:
                 json.dump(product_list, fp, indent=4)
 
         product_list = product_list.get('list', [])
+        closest = self.closest_match(product_list, item_name)
+        return closest
+
+    def closest_match(self, product_list, item_name):
+        """
+        TODO: intelligently find the closest match
+        :param product_list:
+        :return:
+        """
         items = []
         if product_list:
             items = product_list.get('item')
@@ -124,8 +116,8 @@ class UsdaReader:
         self._logger.info('Found {} records for name '
               '"{}"'.format(len(items), item_name))
         self._logger.info('*****')
-        if len(items) >= 3:
-            print(items[:3])
+        #if len(items) >= 3:
+        #    print(items[:3])
         if items:
             product = items[0]
             name = product['name']
