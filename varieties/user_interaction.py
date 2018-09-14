@@ -1,5 +1,6 @@
 import logging
 import argparse
+import json
 
 from varieties.bread import Bread
 from management.chain_manager import ChainManager, RecipeTree
@@ -36,14 +37,22 @@ def main():
         bread = Bread(args)
 
 
-        changed = bread.change_hydration(90, bread.recipe)
-        changed = bread.change_hydration(50, changed)
-        print(changed)
-        bread.to_xl(changed)
-        json_obj = bread.df_to_json(changed)
-        #print(json_obj)
+        changed = bread.change_hydration(90, bread.original)
+        logger.info('Changed hydration to 90 {}'.format(changed))
+        changed1 = bread.change_hydration(50, changed)
+        logger.info('Changed hydration to 50 {}'.format(changed1))
+        json_obj = bread.df_to_json(changed1)
+
+        #print(json_obj[0])
+        #print(json.dumps(json_obj, indent=4))
+        output_file = '/tmp/assistant/logs/recipe.json'#os.path.join(output_dir, bread.)
+        with open(output_file, 'w') as f:
+            json.dump(json_obj, f, indent=4)
+        scaled = bread.scale_recipe(changed1, 3)
+        logger.info('Scaled {} times {}'.format(scaled, 3))
+        bread.save_xl()
     except Exception as e:
-        #print(e)
+
         import traceback
         traceback.print_exc()
         exit(-1)

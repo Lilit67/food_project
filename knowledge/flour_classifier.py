@@ -2,7 +2,7 @@ import sklearn
 from sklearn import tree
 from nutrient.ingredients import flours, condiments, wet
 
-floursold = ['wheat flour', 'rye flour', 'rye', 'wheat',
+training = ['wheat flour', 'rye flour', 'rye', 'wheat',
        'oat flour', 'oats', 'flour',
        'all purpose flour, white',
        'white flour', 'whole wheat flour',

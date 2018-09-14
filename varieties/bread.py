@@ -5,6 +5,7 @@ import json
 import argparse
 import logging
 import math
+import copy
 
 from recipe import Recipe
 from constants.column_names import ColumnNames as cn
@@ -30,7 +31,10 @@ def color_negative_red(val):
     color = 'red' if val < 0 else 'black'
     return 'color: %s' % color
 
+
+
 class Bread(Recipe):
+
     def __init__(self, options):
         """
         Initialization is with first version
@@ -41,23 +45,27 @@ class Bread(Recipe):
         Recipe.__init__(self, options)
         self._logger = logging.getLogger(self.__class__.__name__)
         self.original = self.recipe
+        self.history = []
         if self.recipe.empty:
             raise Exception('Recipe is empty!')
         df = self.original
         df = self.remove_empty_rows_columns(df)
         min_cols = cn.min_columns()
         df = self.leave_these_columns(df, min_cols)
-        print(df)
+        self._logger.info('After Minimum cols set {}'.format(df))
 
         #df = self.clean_data(df)
         self._hydration = self.hydration(df)
 
         self._water_weight = self.wet_weight(df)
 
-        df = self.set_bakers_percents(df)
-        print('Returned from setting bakers percents {}'.format(df))
-        df2 = self.fill_usda(df)
-        print('After filling usda {}'.format(self.df_to_matrix(df2)))
+        df1 = self.set_bakers_percents(df)
+        self._logger.info('After calculating bakers percent for each ingredient: {}'.format(df))
+        df2 = self.fill_usda(df1)
+        self._logger.info('After filling usda {}'.format(df2))
+        self.original = df2
+        self.original['name'] = 'original'
+        self.history.append(self.original)
 
     def record(self, df):
         """
@@ -79,25 +87,17 @@ class Bread(Recipe):
         for index, row in df.iterrows():
             ingredient = row[cn.ingredient]
             if self.cell_valid(ingredient, celltype=str):
-                #print(row['ingredient'], row['amount'], index)
                 found_info = usda.get_product_info(ingredient)
                 if found_info:
                     found_code = found_info.get('ndbno')
                     found_name = found_info.get('name')
-                    print(found_code, found_name)
+                    #print(found_code, found_name)
                     df.loc[index, cn.code] = found_code
                     df.loc[index, cn.usda_name] = found_name
-        #print(df)
         return df
 
 
-    def set_ingredient_types(self, df):
-        for name in self.ingredient_names(df):
-            if name in flours:
-                self.set_at(df, col='type 1', row=name, val='dry')
-        return df
-
-# DATA CLEANUP, MISSING DATA
+# DATA CLEANUP, MISSING DATA, COLUMNS
 
     def add_missing_columns(self, df):
         """
@@ -177,29 +177,37 @@ class Bread(Recipe):
         ingredients = self.ingredient_names(df)
         return True
 
-    def set_bakers_percents_orig(self, df):
-        if not self.is_bread(df):
-            return df
-
-        for ingredient in self.ingredient_names(df):
-            bakers_percents = self.bakers_percent(df, ingredient=ingredient)
-            bp = int(bakers_percents)
-            self.set_at(df, cn.BP, ingredient, bp)
+    def weights_from_percents(self, df, total_dough_weight):
+        """
+        Only BP are given, change
+        100%=total
+        percent%=x
+        x=total*percent/100
+        :param df:
+        :param ingredient:
+        :param weight:
+        :return:
+        """
+        for index, row in df1.iterrows():
+            ingredient = row[cn.ingredient]
+            if self.cell_valid(ingredient, celltype=str):
+                percent = df.loc[index, percent]
+                weight = total_dough_weight * percent / 100
+                df.loc[index, cn.weight] = weight
         return df
 
+    def set_bakers_percents(self, df1):
 
-    def set_bakers_percents(self, df):
-        df1 = df #df.reset_index()
         for index, row in df1.iterrows():
             ingredient = row[cn.ingredient]
 
             if self.cell_valid(ingredient, celltype=str):
-                bakers_percents = self.bakers_percent(df, ingredient)
+                bakers_percents = self.bakers_percent(df1, ingredient)
                 bp = int(bakers_percents)
                 df1.loc[index, cn.BP] = bp
                 # this sets all column
                 #df.loc[df.ingredient != "", 'BP'] = bp
-        print('After setting BP-s: {}'.format(df1))
+        #print('After setting BP-s: {}'.format(df1))
         return df1
 
     def cell_valid(self, ingredient, celltype=str):
@@ -240,6 +248,28 @@ class Bread(Recipe):
 
         return baker_percent
 
+    #@Decorators.recorder
+    def scale_recipe(self, df, times):
+        """
+        Scale all the ingredients,
+        make another version,
+        save to excel worksheet
+        :param version:
+        :return:
+        """
+        for index, row in df.iterrows():
+            ingredient = row[cn.ingredient]
+
+            if self.cell_valid(ingredient, celltype=str):
+                weight = df.loc[index, cn.weight]
+                new_weight = weight * times
+                df.loc[index, cn.weight+'_'+str(times)] = new_weight
+        df1 = copy.copy(df)
+
+        self.history.append(df1)
+        return df
+
+
     def weight_from_bakers_percent(self, df):
         flours = self.get_flours_weight(df)
         for ing in self.ingredient_names(df):
@@ -258,7 +288,7 @@ class Bread(Recipe):
         weight = df.loc[ingredient, cn.weight]
         return weight
 
-
+    @staticmethod
     def weight_from_percent(percent, total_weight):
         """
         Calculate weight from baker's percent
@@ -295,8 +325,6 @@ class Bread(Recipe):
     def flours_ingredients_weight(self, df):
         """ Flours weight in baked recipe """
         flour = self._get_matching_records(df, flours)
-        #print('Flour ingredients found: {}'.format(flour))
-        #print('Flour names found: '.format(flour.ingredient))
         if flour.empty:
             raise Exception("Flour not found for bread product, something is wrong!")
         flours_weight = sum(flour.amount.values)
@@ -330,23 +358,7 @@ class Bread(Recipe):
         flour_weight = flour_weight + starter_dry
 
         hydration = water_weight * 100 / flour_weight
-        #print('Hydration percent: {}, dataframe {}'.format(hydration, df))
         return hydration
-
-
-#HELPERS
-    def _get_matching_records(self, df, ingredients):
-        """
-        Common call
-        :param ingredients:
-        :return: dataframe object
-        """
-
-        selected = df.loc[df[cn.ingredient].isin(ingredients)]
-        return selected
-
-    def set_matching_records(self, df, row, col, values):
-        pass
 
 
 #ANALYSIS
@@ -360,7 +372,6 @@ class Bread(Recipe):
         algo model here?
         :return:
         """
-
         return 'white'
 
     def analyze_hydration(self, df):
@@ -383,33 +394,11 @@ class Bread(Recipe):
         elif hydra > Hydration.high_hydration and hydra <= Hydration.very_high_hydration:
             print('Your dough is rather wet, watch out when shaping!')
         else:
-            print('This hydration is too much, make sure you know what you are doing!')
+            print('This hydration is high, make sure you know what you are doing!')
 
 
 # RECALCULATION
-
-    def change_hydration_old(self, new_hydration_percent, df):
-        """
-        Recalculate recipe with changed hydration
-        :param percent:
-        :return:
-        """
-        #old_percent = old_weight
-        #new_percent = new_weight
-        #new_weight = new_percent * old_weight / old_percent
-        #X=new_h * old_weight/new_h
-        #new_recipe = self.recipe.set_index('ingredient')
-
-        current_wet_weight = self.wet_weight(df)
-        current_whole_weight = self.total_weight(df)
-        new_weight = new_hydration_percent * current_wet_weight / self._hydration
-        # Set new weight in recipe
-        self._logger.info(current_wet_weight, new_weight)
-        df.loc['water', 'amount'] = new_weight
-        self._hydration = new_hydration_percent
-
-        return new_weight
-
+    #@Decorators.recorder
     def change_hydration(self, new_hydration_percent, df):
         """
         Recalculate recipe with changed hydration
@@ -421,17 +410,30 @@ class Bread(Recipe):
         #new_weight = new_percent * old_weight / old_percent
         #X=new_h * old_weight/new_h
         #new_recipe = self.recipe.set_index('ingredient')
-
+        hydration = self.hydration(df)
+        print('*** Changing hydration, old: {}, '
+              'new: {}'.format(hydration, new_hydration_percent))
         original_wet_weight = self.wet_weight(df)
         original_total_weight = self.total_weight(df)
-        hydration = self.hydration(df)
+
         new_wet_weight = new_hydration_percent * original_wet_weight / hydration
         # Set new weight in recipe
         self._logger.info(original_wet_weight, new_wet_weight)
-        df.loc['water', 'amount'] = new_wet_weight
+        for index, row in df.iterrows():
+            ingredient = row[cn.ingredient]
+            if self.is_water(ingredient):
+                df.loc[index, 'amount'] = new_wet_weight
         self._hydration = new_hydration_percent
+        df1 = df.copy()
+        df1['hydration'] = new_hydration_percent
+        self.history.append(df1)
 
-        return df
+        return df1
+
+    def is_water(self, ingredient):
+        if ingredient in wet:
+            return True
+        return False
 
     def analyze_flours(self, df):
         """
@@ -447,25 +449,6 @@ class Bread(Recipe):
         recipe_flours = self._get_matching_records(df, flours)
         self._logger.info('Analyzing flours...')
         self._logger.info("Flours: {}".format(recipe_flours))
-
-    @classmethod
-    def yeast_to_starter_in_recipe(cls, df):
-        """
-        Calculates the recipe with
-        100% hydration starter
-        :param df:
-        :return:
-        """
-        yeast = 0
-        starter = 0
-
-        return NotImplemented
-
-    @classmethod
-    def yeast_to_starter_conversion(cls, yeast=0, starter=0):
-        """ General formula between converson of yeast and starter """
-
-        return yeast, starter
 
     def analyze_cooking_conditions(self, df):
         """
@@ -511,23 +494,6 @@ class Bread(Recipe):
         form = int(flour_temp) + int(room_temp) + 100
         return form
 
-    def scale_recipe(self, df, times):
-        """
-        Scale all the ingredients,
-        make another version,
-        save to excel worksheet
-        :param version:
-        :return:
-        """
-        ingredients = self.ingredient_names(df)
-        print(ingredients)
-        for ingredient in ingredients:
-            print(ingredient)
-            if not ingredient:
-                continue
-            current_amount = self.ingredient_weight(ingredient=ingredient, df=df)
-            self.set_at(df, cn.weight, ingredient, current_amount * times)
-        self.versions.append(df)
 
     # DETECT IF BREAD
     #TODO this should be part of AI
@@ -539,6 +505,39 @@ class Bread(Recipe):
         ingredients = self.ingredient_names(df)
 
         return True
+
+    def total_dough_weight(self, df):
+        return df.groupby(cn.ingredient, cn.weight).sum()
+
+    def scale_by_weight(self, df, weight):
+        current_weght = self.total_dough_weight(df)
+        self.history.append(df)
+        return df
+
+    def check_yeast_amount(self, df):
+        """
+        Siting https://food52.com/blog/16434-can-you-speed-up-or-slow-down-yeast-rise-times
+        there should be 2 grams of commercial yeast per pound of flour
+        :param df:
+        :return:
+        """
+        yeast = self.get(df, row='yeast', col='amount')
+        if not yeast:
+            self._logger.info('No yeast found in the recipe')
+            return True
+        flour = self.flours_ingredients_weight(df)
+        flour = self.convert(flour, unit='gram')
+
+        return False
+
+    def get(self, df, row, col):
+        """ Find, iterating through indexes"""
+        val = None
+
+        return val
+
+
+
 
     def convert_yeast_to_starter(self, df):
         """ Works for breads only"""
@@ -563,9 +562,9 @@ class Bread(Recipe):
         starter_water = starter / 2
         new_flour = flour - starter_flour
         new_water = water - starter_water
-
-
-
+        df1 = copy(df)
+        self.history.append(df1)
+        return df
 
 
 def parse_options():
@@ -594,10 +593,7 @@ def main():
     bread.change_hydration(new_hydration_percent, bread.recipe)
     print('Changed hydration to {}'.format(new_hydration_percent))
     print(bread.reindexed_recipe)
-    #bread.scale_recipe(bread.recipe, times=2)
-    #print('Scaled recipe:')
-    #print(bread.reindexed_recipe)
-    bread.to_xl()
+    bread.save_xl()
 
 
 

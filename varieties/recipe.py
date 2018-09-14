@@ -5,6 +5,7 @@ import json
 import argparse
 import logging
 import os
+import xlsxwriter
 from management.chain_manager import RecipeTree
 from constants.column_names import ColumnNames as cn
 
@@ -21,6 +22,22 @@ class Recipe(object):
         self.df_manager.add_node(self.recipe)
         self._logger = logging.getLogger(__class__.__name__)
 
+
+    class Decorators:
+
+        @classmethod
+        def recorder(cls, func):
+            def function_wrapper(*args, **kwargs):
+                print("Before calling " + func.__name__)
+                res = func(*args, **kwargs)
+                res1 = copy.copy(res)
+                print(kwargs)
+                Recipe.history.append(res1)
+                print("After calling " + func.__name__)
+
+            return function_wrapper
+
+
     def clean_data(self, df):
         """ Override """
         raise Exception('This function should be overriden')
@@ -32,6 +49,11 @@ class Recipe(object):
         return df1
 
     def reindex(self, df):
+        """
+        Reindex dataframe to stepNo/indredient MultiIndex
+        :param df:
+        :return:
+        """
         df1 = df.set_index(['stepNo', cn.ingredient])
         df1.sort_index(inplace=True)
         print('Reindexed: {}'.format(df1))
@@ -40,12 +62,11 @@ class Recipe(object):
 
 
     def reorder_columns(self, df):
-        """ Call before reindexing"""
+        """ Reorders columns to standard predefine order """
         cn_inst = cn()
         columns = cn_inst.get_ordered()
 
         df = df[columns]
-        #print(df)
         return df
 
     def get_ingredients(self, df):
@@ -134,12 +155,25 @@ class Recipe(object):
         """
         return df.loc[row, col]
 
+    def _get_matching_records(self, df, ingredients):
+        """
+        Common call
+        :param ingredients:
+        :return: dataframe object
+        """
+
+        df1 = df.loc[df[cn.ingredient].isin(ingredients)]
+        return df1
+
+    def set_matching_records(self, df, row, col, values):
+        pass
+
     # FORMATING and OUTPUT
     def df_to_json(self, df):
         json_obj = df.to_json(orient='records')
         return json_obj
 
-    def to_xl(self, df, fpath=None):
+    def to_xl(self, df, fpath=None, name=None):
         """
         Save to excel file
         :param fpath:
@@ -150,6 +184,36 @@ class Recipe(object):
         df.to_excel(writer, self.sheet + '_original')
         self.recalculated = df
         self.recalculated.to_excel(writer, self.sheet + '_rec')
+        writer.save()
+
+
+    def save_xl(self):
+        original_file_name = os.path.split(self.workbook)[-1]
+        new_file = './output/' + original_file_name + '_2.xlsx'
+        if os.path.exists(new_file):
+            os.remove(new_file)
+        writer = pd.ExcelWriter(new_file, engine='xlsxwriter')
+
+        print("writing to {}".format(new_file))
+        workbook = writer.book
+
+        cell_format = workbook.add_format({'font_size': 22})
+        cell_format.set_font_size(22)
+        # Add some cell formats.
+        format1 = workbook.add_format({'num_format': '#,##0.00'})
+        format2 = workbook.add_format({'num_format': '0%'})
+
+        for index, df in enumerate(self.history):
+            sheetname = self.sheet + '_' + str(index)
+            df.to_excel(writer, index=False, sheet_name=sheetname)
+            # df.to_excel(writer_orig, index=False, sheet_name='report')
+            worksheet = writer.sheets[sheetname]
+            worksheet.set_column('A:Z', None, cell_format)
+            worksheet.set_row(1, None, cell_format)
+            # Set the column width and format.
+            worksheet.set_column('B:B', 18, format1)
+
+
         writer.save()
 
     def df_to_json_old(self, df):
@@ -165,6 +229,15 @@ class Recipe(object):
         self._logger.info(matix_type)
         return matix_type
 
+
+    def recorder(self, func):
+        def function_wrapper(df):
+            print("Before calling " + func.__name__)
+            res = func(x)
+            res1 = copy(res)
+            self.history.append(res1)
+            print("After calling " + func.__name__)
+        return function_wrapper
 
 
 class CSVReader:
