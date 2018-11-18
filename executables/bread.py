@@ -507,7 +507,9 @@ class Bread(Recipe):
         return True
 
     def total_dough_weight(self, df):
-        return df.groupby(cn.ingredient, cn.weight).sum()
+        #return df.groupby(cn.ingredient, cn.weight).sum()
+        dfsum = df[cn.weight].sum()
+        return dfsum
 
     def scale_by_weight(self, df, weight):
         current_weght = self.total_dough_weight(df)

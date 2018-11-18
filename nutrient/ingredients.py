@@ -9,7 +9,7 @@ flours = ['wheat flour', 'rye flour', 'rye', 'wheat',
           'white wheat flour (bread flour)',
           'white wheat flour(bread flour) (100 %)',
           'Bread flour', '50/50 blend flour', 'All purpose flour',
-          'All-purpose flour', 'whole rye flour']
+          'All-purpose flour', 'whole rye flour', 'white bread flour']
 
 # rest of dry ingredients
 condiments = ['salt', 'sugar', 'kosher salt',
@@ -39,7 +39,7 @@ butter = ['butter', 'european butter',
 
 milk = ['cold milk', 'milk', 'buttermilk', 'yoghurt']
 
-wheat = ['wheat', 'whole wheat', 'white wheat']
+wheat = ['wheat', 'whole wheat', 'white wheat', 'white bread flour']
 
 # for searching in usda db
 usda_group_item_map = {'Cereal Grains and Pasta': flours,

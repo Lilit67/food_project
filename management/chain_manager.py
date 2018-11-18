@@ -1,6 +1,6 @@
 import os
 import logging
-#from varieties.recipe import Recipe
+#from executables.recipe import Recipe
 
 class Node:
     def __init__(self, val):

@@ -1,0 +1,39 @@
+Try 1
+
+1. recipe: http://www.northwestsourdough.com/75-hydration-easy-autumn-white-sourdough-bread/
+2. scale: 50 %
+- flour: 365 whole foods organic all purpose white
+3. kneading: none
+- autolyze: 20 minutes
+- salt: after autolyze
+4. folding: 2 hours
+5. fermentation: overnight, room temp.
+- bake: 500 F 20 covered, 20 uncomvered
+- dough characteristics: gluten was first good, but afterwards the dough was not smooth,
+- shaping:  had to add flour to shape.
+- result: flat
+taste:good
+crumb: not open
+shell: pale, thick
+
+
+try 2
+
+1. recipe: http://www.northwestsourdough.com/75-hydration-easy-autumn-white-sourdough-bread/
+2. scale: 50 %
+- flour: 365 whole foods organic all purpose white
+3. kneading: 30 min, manual
+- autolyze: 20 minutes
+- salt: after autolyze
+4. folding: 2 hours
+rise: overnight
+5. fermentation: overnight, room temp, 18 hours
+
+- bake: 500 F 20 covered, 20 uncomvered
+- dough characteristics: gluten was first good, but afterwards the dough was not smooth,
+- shaping:  had to add flour to shape.
+- result: flat
+taste:good
+crumb: not open
+shell: pale, thick
+reason for failure: overproof, not enough gluten

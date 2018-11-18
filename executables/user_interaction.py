@@ -2,7 +2,7 @@ import logging
 import argparse
 import json
 
-from varieties.bread import Bread
+from executables.bread import Bread
 from management.chain_manager import ChainManager, RecipeTree
 
 def parse_options():
@@ -19,12 +19,17 @@ def parse_options():
     return args
 
 def set_logger():
+
     logname = '/tmp/assistant/logs/bread.log'
 
-    logging.basicConfig(filename=logname, filemode='w')
+    #logging.basicConfig(filename=logname, filemode='w')
+    # Display progress logs on stdout
+    logging.basicConfig(level=logging.INFO,
+                        format='%(asctime)s %(levelname)s %(message)s')
     logger = logging.getLogger()
     fh = logging.FileHandler(logname)
     logger.addHandler(fh)
+    print(logger)
     return logger
 
 
@@ -51,6 +56,7 @@ def main():
         scaled = bread.scale_recipe(changed1, 3)
         logger.info('Scaled {} times {}'.format(scaled, 3))
         bread.save_xl()
+        bread.df_to_csv('./output/recipe.csv')
     except Exception as e:
 
         import traceback

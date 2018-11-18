@@ -199,7 +199,7 @@ class Recipe(object):
 
         cell_format = workbook.add_format({'font_size': 22})
         cell_format.set_font_size(22)
-        # Add some cell formats.
+        # Add some cell recipes2.
         format1 = workbook.add_format({'num_format': '#,##0.00'})
         format2 = workbook.add_format({'num_format': '0%'})
 
@@ -212,17 +212,24 @@ class Recipe(object):
             worksheet.set_row(1, None, cell_format)
             # Set the column width and format.
             worksheet.set_column('B:B', 18, format1)
-
-
         writer.save()
 
-    def df_to_json_old(self, df):
-        results = {}
-        for key, df_gb in df.groupby('stepNo'):
-            results[str(key)] = df_gb.to_dict('results')
+    def df_to_csv(self, file_name):
+        """ To csv plus header info in one sheet """
+        print('Writing to {}'.format(file_name))
+        accumulator = ''
+        for index, df in enumerate(self.history):
+            df[['amount']] = df[['amount']].astype('int64')
+            #df['hydration'] = '<span style="color: #00CD00">Active</span>'
+            data = df.to_csv(path_or_buf=None, sep='\t', encoding='utf-8')
+            accumulator += data + '\n'
+            accumulator += 'Total dough weight\n'.format(self.total_dough_weight(df))
 
-        self._logger.info(json.dumps(results, indent=4))
-        return results
+        with open(file_name, 'w') as f:
+            f.write(accumulator)
+
+        return True
+
 
     def df_to_matrix(self, df):
         matix_type = df.as_matrix()
