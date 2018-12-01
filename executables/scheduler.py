@@ -22,8 +22,8 @@ class Step:
         self.step_name = step_name
         self.interval = interval*60
         self.next_step = None
-        self.connected = False
-        self.active_step = True
+        self.connected = connected
+        self.active_step = active
 
 
 class RecipeStepManager:
@@ -145,7 +145,7 @@ class Scheduler:
         step_mgr.construct(recipe_schedule)
         adjustment = {}
         start_time = my_shedule[0][0]
-        print('\n\nI can start at {}'.format(start_time))
+        print('\nStarting at {}'.format(start_time))
 
         step_index = 0
         schedule_index = 0
@@ -154,27 +154,30 @@ class Scheduler:
         for si in my_shedule:
 
             st, end = self.convert_interval(si)
-            print('I have timeslot from: {} to: {}'.format(st, end))
-
-            print('Completed step number {}.{}'.format(step_index, step_mgr.steps[step_index].step_name))
-
+            print('\nNext free timeslot is from: {} to: {}\n'.format(st, end))
             current_time = st
-            while step_index <= number_of_steps:
-                step = step_mgr.steps[step_index]
-                print('Step: {}, time needed: {} minutes'.
-                      format(step.step_name, step.interval / 60))
+            while step_index < number_of_steps:
 
+                step = step_mgr.steps[step_index]
                 delta = timedelta(seconds=step_mgr.steps[step_index].interval)
-                current_time = st + delta
-                print('This step will be completed at this time {}'.format(current_time))
+                print(st, delta)
+                current_time = current_time + delta
+                print('Step # {}:{} needs your active time: {}, needs {} minutes to complete, at: {}'.
+                      format(step_index, step.step_name, step.active_step,
+                             step.interval / 60, current_time))
                 if current_time <= end:
                     adjustment[step.step_name] = current_time
+
+                    print('Completed step # {}. {}'.
+                          format(step_index, step_mgr.steps[step_index].step_name))
                     step_index += 1
                 elif not step.active_step:
-                    print('Step {} is not active, proceed to next '
-                          'schedule interval'.format(step.step_name))
+                    # TODO: take into account time step ends and time of next slot
+                    print('Step {} is not active, but it will pass the current timeslot, '
+                          'so proceed to the next free '
+                          'timeslot'.format(step.step_name))
                     step_index += 1
-                    continue
+                    break
                 else:
                     print('Oh NO! Do not have time for step {}'.format(step.step_name))
                     break
@@ -184,7 +187,7 @@ class Scheduler:
         else:
             print('You can complete this recipe at following times {}'.format(adjustment))
 
-    def calc_schedulenon(self):
+    def calc_scheduleOLD(self):
         """
         mystart + 30 < myend?
         yes: move recipe schedule
@@ -207,8 +210,8 @@ class Scheduler:
 
         while step_index <= number_of_steps:
             step = step_mgr.steps[step_index]
-            print('Step: {}, time needed: {} minutes'.
-                  format(step.step_name, step.interval / 60))
+            print('Step #{}: {}, time needed: {} minutes'.
+                  format(step_index, step.step_name, step.interval / 60))
 
             while schedule_index < schedule_intervals:
                 st, end = self.convert_interval(my_shedule[schedule_index])
