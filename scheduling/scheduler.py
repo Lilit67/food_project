@@ -5,6 +5,7 @@ import logging
 import argparse
 import json
 
+# interval, connected, active
 recipe_schedule = [('premix', 30, False, True),
                    ('StretchFold', 150, True, True),
                    ('bulk fermentation', 14*60, True, False),
@@ -13,18 +14,59 @@ recipe_schedule = [('premix', 30, False, True),
                    ('proof', 4*60, False, False),
                    ('bake', 40, False, True)]
 
-my_shedule = [('Nov 22 2018  5:30PM', 'Nov 22 2018  10:30PM'),
-('Nov 23 2018  5:30PM', 'Nov 23 2018  10:30PM')
-              ]
+# interval, connected, active
+# if connected to preious and active, cannot take the next user timeslot
+recipe_schedule2 = [('premix', 10, True, True),
+                    ('autolyze', 8 * 60, False, True),
+                   ('StretchFold', 150, True, True),
+                   ('bulk fermentation', 14*60, True, False),
+                   ('rest', 30, False, True),
+                   ('shape', 30, True, True),
+                   ('proof', 4*60, False, False),
+                   ('bake', 40, False, True)]
+
+# interval, connected, active
+recipe_schedule_impossible = [('premix', 100, True, True),
+                    ('autolyze', 8 * 60, True, True),
+                   ('StretchFold', 150, True, True)]
+
+
+my_schedule = [('Nov 22 2018  5:30PM', 'Nov 22 2018  10:30PM'),
+('Nov 23 2018  5:30PM', 'Nov 23 2018  11:30PM')]
+
+my_schedule2 = [('Nov 22 2018  5:30PM', 'Nov 22 2018  10:30PM'),
+('Nov 23 2018  5:30PM', 'Nov 23 2018  11:30PM'),
+               ('Nov 26 2018  5:30PM', 'Nov 23 2018  11:30PM')]
 
 class Step:
     def __init__(self, step_name, interval, connected, active):
         self.step_name = step_name
-        self.interval = interval*60
+        self.interval = self.to_seconds(interval)
         self.next_step = None
         self.connected = connected
         self.active_step = active
+        self.completed = False
 
+    def __str__(self):
+        return self.step_name
+
+    def to_seconds(self, input, unit='min'):
+        """
+        Convert to seconds
+        :param input:
+        :param unit:
+        :return:
+        """
+        if unit == 'min':
+            return input * 60
+        elif unit == 'seconds':
+            return input
+        elif unit == 'hours':
+            return input * 60 * 60
+        elif unit == 'days':
+            return input * 60 * 60 * 24
+        else:
+            raise Exception('Larger than days input is not supported')
 
 class RecipeStepManager:
     def __init__(self):
@@ -32,15 +74,21 @@ class RecipeStepManager:
         self.steps = []
 
 
-    def to_seconds(self, interval, from_u='minutes', to_u='seconds'):
+    def to_seconds(self, input, unit='min'):
         """
-        Interval is an int
-        :param interval:
-        :param from_u:
-        :param to_u:
-        :return: int
+        Convert to seconds
+        :param input:
+        :param unit:
+        :return:
         """
-        return interval * 60
+        if unit == 'min':
+            return input * 60
+        elif unit == 'seconds':
+            return input
+        elif unit == 'hours':
+            return input * 60 * 60
+        else:
+            raise Exception('For now days is not supported')
 
     def add_step(self, name, interval, connected=False, active=True):
         step = Step(name, interval, connected, active)
@@ -49,6 +97,25 @@ class RecipeStepManager:
     def construct(self, recipe_schedule):
         for rep in recipe_schedule:
             self.add_step(rep[0], rep[1], rep[2], rep[3])
+        self.to_stages()
+
+    def to_stages(self):
+        stages = {}
+        index = 0
+        current_stage = []
+        stage_index = 0
+        print(len(self.steps))
+        while index < len(self.steps):
+            if self.steps[index].connected:
+                current_stage.append(self.steps[index])
+            else:
+                stages[stage_index] = current_stage
+                stage_index += 1
+                current_stage = []
+                current_stage.append(self.steps[index])
+            index += 1
+        print('Found {} stages: {}'.format(len(stages), stages))
+        self.stages = stages
 
 
 class Scheduler:
@@ -62,16 +129,16 @@ class Scheduler:
         :param unit:
         :return:
         """
-        return input * 60
+        if unit == 'min':
+            return input * 60
+        elif unit == 'seconds':
+            return input
+        elif unit == 'hours':
+            return input * 60 * 60
+        else:
+            raise Exception('For now days is not supported')
 
-    def premix(self):
-        return 20
-
-    def kneading(self):
-        return 10
-
-
-    def calculate(self, end_date):
+    def calculateOLD(self, end_date):
         """
         Calculate back the time
         :param end_date:
@@ -85,7 +152,7 @@ class Scheduler:
 
         try:
             datetime_object = datetime.strptime(end_date, '%b %d %Y %I:%M%p')
-            print(dir(datetime_object))
+
         except ValueError as e:
             print('Wrong date time format input'.format(e))
 
@@ -119,7 +186,7 @@ class Scheduler:
 
     def convert_interval(self, s_interval):
         """Interval with timestamps instead of strings"""
-        #print('Interval to convert {}'.format(s_interval))
+
         s1 = self.timestamp_from_str(s_interval[0])
         s2 = self.timestamp_from_str(s_interval[1])
         return(s1, s2)
@@ -131,11 +198,11 @@ class Scheduler:
         timed = timedelta(seconds=diffs)
         return timed
 
-    def calc_schedule(self):
+    def schedule_preparation(self, recipe_schedule, my_schedule):
         """
-        mystart + 30 < myend?
-        yes: move recipe schedule
-        no: move my schedule
+        while (my_start + interval <= my_end)
+        yes: step done, move to next step
+        no: proceed to my next free time, no recipe step advanced
         both ended: good
         shedule ended: good
         my time ended: bad
@@ -144,14 +211,14 @@ class Scheduler:
         step_mgr = RecipeStepManager()
         step_mgr.construct(recipe_schedule)
         adjustment = {}
-        start_time = my_shedule[0][0]
-        print('\nStarting at {}'.format(start_time))
+        start_time = my_schedule[0][0]
+        print('\nStart at this time {}'.format(start_time))
 
         step_index = 0
         schedule_index = 0
         number_of_steps = len(step_mgr.steps)
-        schedule_intervals = len(my_shedule)
-        for si in my_shedule:
+        schedule_intervals = len(my_schedule)
+        for si in my_schedule:
 
             st, end = self.convert_interval(si)
             print('\nNext free timeslot is from: {} to: {}\n'.format(st, end))
@@ -184,10 +251,13 @@ class Scheduler:
         if step_index < number_of_steps:
             print('This recipe schedule cannot be completed within the times you gave, '
                   'please add more time')
+            return None
         else:
             print('You can complete this recipe at following times {}'.format(adjustment))
+            return adjustment
 
-    def calc_scheduleOLD(self):
+
+    def calc_schedule(self, recipe_schedule, my_schedule):
         """
         mystart + 30 < myend?
         yes: move recipe schedule
@@ -200,44 +270,56 @@ class Scheduler:
         step_mgr = RecipeStepManager()
         step_mgr.construct(recipe_schedule)
         adjustment = {}
-        start_time = my_shedule[0][0]
-        print('\n\nI can start at {}'.format(start_time))
+        start_time = my_schedule[0][0]
+        print('\nStarting at {}'.format(start_time))
 
         step_index = 0
         schedule_index = 0
         number_of_steps = len(step_mgr.steps)
-        schedule_intervals = len(my_shedule)
+        schedule_intervals = len(my_schedule)
+        for si in my_schedule:
 
-        while step_index <= number_of_steps:
-            step = step_mgr.steps[step_index]
-            print('Step #{}: {}, time needed: {} minutes'.
-                  format(step_index, step.step_name, step.interval / 60))
+            st, end = self.convert_interval(si)
+            print('\nNext free timeslot is from: {} to: {}\n'.format(st, end))
+            current_time = st
+            while step_index < number_of_steps:
 
-            while schedule_index < schedule_intervals:
-                st, end = self.convert_interval(my_shedule[schedule_index])
-                print('I have time from: {} to: {}'.format(st, end))
-
+                step = step_mgr.steps[step_index]
                 delta = timedelta(seconds=step_mgr.steps[step_index].interval)
-                proceed = st + delta
-                print('This step will be completed at this time {}'.format(proceed))
-                if proceed <= end:
-                    adjustment[step.step_name] = proceed
+                print(st, delta)
+                current_time = current_time + delta
+                print('Step # {}:{} needs your active time: {}, needs {} minutes to complete, at: {}'.
+                      format(step_index, step.step_name, step.active_step,
+                             step.interval / 60, current_time))
+                if current_time <= end:
+                    adjustment[step.step_name] = current_time
+
+                    print('Completed step # {}. {}'.
+                          format(step_index, step_mgr.steps[step_index].step_name))
                     step_index += 1
+                elif not step.active_step:
+                    # TODO: take into account time step ends and time of next slot
+                    print('Step {} is not active, but it will pass the current timeslot, '
+                          'so proceed to the next free '
+                          'timeslot'.format(step.step_name))
+                    step_index += 1
+                    break
                 else:
-                    schedule_index += 1
                     print('Oh NO! Do not have time for step {}'.format(step.step_name))
+                    break
         if step_index < number_of_steps:
             print('This recipe schedule cannot be completed within the times you gave, '
                   'please add more time')
+            return None
         else:
             print('You can complete this recipe at following times {}'.format(adjustment))
+            return adjustment
 
-    # ORIG
 
     def total_timedelta(self, start_date, end_date):
 
-        start_date = 'Nov 26 2018  2:30PM'
-        end_date = 'Nov 24 2018  2:30PM'
+        #start_date = 'Nov 26 2018  2:30PM'
+        #end_date = 'Nov 24 2018  2:30PM'
 
         try:
             datetime_object = datetime.strptime(start_date, '%b %d %Y %I:%M%p')
@@ -262,10 +344,12 @@ def parse_options():
     parser.add_argument('-d', "--deadline",
                         metavar='end_time',
                         type=str,
-                        required=True,
+                        required=False,
                         help='deadline time string, example: Nov 22 2018 2:30PM')
-    parser.add_argument('--room_temp', required=False,
+    parser.add_argument('--steps', required=False,
                         help='room temperature')
+    parser.add_argument('--schedule', required=False,
+                        help='schedule')
     parser.add_argument('--sum', dest='accumulate', action='store_const',
                         const=sum, default=max,
                         help='sum the integers (default: find the max)')
@@ -285,9 +369,9 @@ def main():
     datetime_object = datetime.strptime(end_date, '%b %d %Y %I:%M%p')
 
     regimen = [('Nov 22 2018  2:30PM','Nov 22 2018  3:30PM'), (), (), ()]
-    tt.calculate(args.deadline)
+    #tt.calculate(args.deadline)
 
-    tt.calc_schedule()
+    tt.calc_schedule(recipe_schedule, my_schedule)
 
 if __name__ == '__main__':
     main()

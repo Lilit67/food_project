@@ -5,6 +5,8 @@ import json
 from executables.bread import Bread
 from management.chain_manager import ChainManager, RecipeTree
 
+logger = logging.getLogger()
+
 def parse_options():
     parser = argparse.ArgumentParser(description='Calculate recipe')
     parser.add_argument('-w', "--workbook",  metavar='filepath', type=str,
@@ -26,7 +28,7 @@ def set_logger():
     # Display progress logs on stdout
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(levelname)s %(message)s')
-    logger = logging.getLogger()
+
     fh = logging.FileHandler(logname)
     logger.addHandler(fh)
     print(logger)
