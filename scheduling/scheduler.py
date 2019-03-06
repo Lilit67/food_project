@@ -15,12 +15,12 @@ recipe_schedule = [('premix', 30, 8*60, False),
                    ('bake', 40, 0, True)]
 
 # interval, connected, active
-# if connected to preious and active, cannot take the next user timeslot
+# if connected to previous and active, cannot take the next user timeslot
 recipe_schedule2 = [('premix', 10, 50, True),
                     ('autolyze', 8 * 60, 90, True),
                    ('StretchFold', 150, 200, True),
                    ('bulk fermentation', 14*60, 90, False),
-                   ('rest', 30, 60, True),
+                   ('bench rest', 30, 60, True),
                    ('shape', 30, 0, True),
                    ('proof', 4*60, 8*60, False),
                    ('bake', 40, 0, True)]
@@ -81,8 +81,9 @@ class BakerTimeManager:
     def next_window(self):
 
         while self.current < self.length:
-            yield self.current
             self.current += 1
+            yield self.current
+        raise Exception('No more windows left!')
 
     def apply_stretch(self, current):
         print('{}: using extended time {}'.format(step.step_name, step.stretch))
@@ -98,25 +99,32 @@ class BakerTimeManager:
         if step_end >= start and step_end <= end:
             return True
         else:
-            print('Move to check next interval')
-            self.current += 1
+            print('Oops!!! Step #{} is outside window. Lets move to check next interval '
+                  'window in your schedule'.format(step.step_name))
+            #self.current += 1
+            self.next_window()
             # proceed to check next time intervals
             while self.current < len(self.schedule):
                 start, end = self.convert_interval(self.schedule[self.current])
+                print('Next window starts {} and ends {}'.format(start, end))
                 # free time interval ends earlier than recipe step time
                 if end < step_end:
                     print('Skip over this interval {} {}'.format(start, end))
                     self.current += 1
+                    #self.next_window()
                     continue
                 else:
                     if step_end >= start and step_end <= end:
                         return True
                     else:
-                        print('{}: using extended time {}'.format(step.step_name, step.stretch))
-                        step_end = step_end + stretch
-                        if step_end >= start and step_end <= end:
-                            print ('Step can complete at this time, '
-                                   'with extended step time {} {}'.format(start, end))
+                        print('Step {} can be extended up to: {}'.format(step.step_name, step.stretch))
+                        extention = step_end + stretch
+                        if extention >= start:  # and extention <= end:
+                            print('Step {} can be extended to time: {}'.format(start))
+
+                            print ('Correcting step end time to {}'
+                                   .format(start))
+                            #self.current_time =
                             return True
                         else:
                             return False
@@ -356,10 +364,10 @@ def parse_options():
 
 def main():
     args = parse_options()
-    tt = Scheduler()
+    sch = Scheduler()
     start_date = 'Nov 22 2018  2:30PM'
     end_date = 'Nov 24 2018  2:30PM'
-    tt.total_timedelta(start_date, end_date)
+    sch.total_timedelta(start_date, end_date)
 
     datetime_object = datetime.strptime(end_date, '%b %d %Y %I:%M%p')
 
@@ -367,7 +375,7 @@ def main():
     #tt.calculate(args.deadline)
 
     #tt.calc_schedule(recipe_schedule, my_schedule)
-    tt.schedule_preparation(recipe_schedule, my_schedule)
+    sch.schedule_preparation(recipe_schedule, my_schedule)
 
 
 if __name__ == '__main__':

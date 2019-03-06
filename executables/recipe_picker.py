@@ -10,35 +10,47 @@ class RecipePicker:
         self.client = DbManager()
 
 
-    def pick_random(self, criteria=None):
-        pass
-
-
-class DbManager:
+class DbManagerOld(object):
     """ Manages the database info """
 
-    def __init__(self, dbname=None, user='admin', passwd='admin'):
-        conn = sqlite3.connect('example.db')
+    def __init__(self, dbname='example.db', user='admin', passwd='admin'):
+        self.connection = sqlite3.connect(dbname)
 
-    def create(self, tabename='bread'):
+    def create(self, tablename='bread'):
         # Create table
-        c.execute('''CREATE TABLE bread
+        #if self.connection.execute('''table bread exists'''):
+        #    return
+        self.connection.execute('''CREATE TABLE if not exists bread
                      (id text, name text, ingredient text, qty real, unit text)''')
 
-    def insert(self, table='bread'):
-        c = conn.cursor()
+    def insert(self, tablename='bread', columns=(), values=()):
+        if not columns or not values:
+            raise Exception('columns and values should be valid entries')
+        if not len(columns) == len(values):
+            raise Exception('columns and values are not equal lists')
+        c = self.connection.cursor()
         # Insert a row of data
-        c.execute("INSERT INTO bread VALUES ('8i9uy65','white_sourdough','RHAT',100,35.14)")
+        sql_comm = 'INSERT INTO bread {} VALUES {}'.format(columns, values)
+        c.execute(sql_comm)
 
         # Save (commit) the changes
-        conn.commit()
+        self.connection.commit()
 
         # We can also close the connection if we are done with it.
         # Just be sure any changes have been committed or they will be lost.
-        conn.close()
+        self.connection.close()
 
+    def query(self, query):
+        pass
 
-    def retreive(self):
+    def retreive(self, keyword):
         return ''
 
+def main():
+    picker = DbManager()
+    picker.create('bread')
+    recipe = ''
 
+
+if __name__ == '__main__':
+    main()

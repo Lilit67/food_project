@@ -48,6 +48,7 @@ class Bread(Recipe):
         self.history = []
         if self.recipe.empty:
             raise Exception('Recipe is empty!')
+        self.check_validity(self.original)
         df = self.original
         df = self.remove_empty_rows_columns(df)
         min_cols = cn.min_columns()
@@ -75,6 +76,20 @@ class Bread(Recipe):
         :return:
         """
         self.df_manager.add_node(self.latest, df)
+
+    def check_validity(self, df):
+        """
+        Expected column names
+        :return:
+        """
+        columns = cn.column_names()
+        recipe_cols = df.columns.tolist()
+
+        if not columns == recipe_cols:
+            raise Exception('This recipe columns {} is not inline with'
+                            'expected {}'.format(columns, recipe_cols))
+
+
 
     def fill_usda(self, df):
         """
@@ -135,6 +150,7 @@ class Bread(Recipe):
                 to_drop.append(col)
         df1 = df.drop(to_drop, axis=1)
         return df1
+
 
 
     def clean_data(self, df):
@@ -571,10 +587,15 @@ class Bread(Recipe):
 
 def parse_options():
     parser = argparse.ArgumentParser(description='Calculate recipe')
-    parser.add_argument('-w', "--workbook",  metavar='filepath', type=str,
-                        help='file path')
-    parser.add_argument('--sheet',  metavar='sheet', type=str,
-                        help='sheet name')
+    parser.add_argument('-w', "--workbook",
+                        metavar='filepath',
+                        type=str,
+                        help='file path',
+                        required=True)
+    parser.add_argument('--sheet',  metavar='sheet',
+                        type=str,
+                        help='sheet name',
+                        required=True)
     parser.add_argument('--sum', dest='accumulate', action='store_const',
                         const=sum, default=max,
                         help='sum the integers (default: find the max)')

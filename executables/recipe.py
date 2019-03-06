@@ -8,11 +8,13 @@ import os
 import xlsxwriter
 from management.chain_manager import RecipeTree
 from constants.column_names import ColumnNames as cn
+from read_write.excel_reader import ExcelReader
+from read_write.csv_reader import CSVReader
 
 
 class Recipe(object):
     def __init__(self, options):
-        self.reader = ExcelReader(options)
+        self.reader = ExcelReader(options.workbook, options.sheet)
         self.sheet = options.sheet
         self.workbook = options.workbook
         self.recipe = self.reader.read_xl()
@@ -247,7 +249,7 @@ class Recipe(object):
         return function_wrapper
 
 
-class CSVReader:
+class CSVReaderOLD:
     def __init__(self, options):
         self.file = options.csv
         self.df = CSVReader.read_csv(self.file)
@@ -261,7 +263,7 @@ class CSVReader:
     def write_csv(self, df):
         return NotImplemented
 
-class ExcelReader:
+class ExcelReaderOLD:
     """
     Can read all the different
     types of recipes and craeae a data
