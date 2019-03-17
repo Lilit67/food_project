@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # Requires PyAudio and PySpeech.
 
-import argparse
 import speech_recognition as sr
 from time import ctime
 import time
@@ -9,23 +8,19 @@ import os
 from gtts import gTTS
 
 
-done = False
-
 def speak(audioString):
     print(audioString)
     tts = gTTS(text=audioString, lang='en')
-    tts.save("audio2.mp3")
-    os.system("mpg321 audio2.mp3")
+    tts.save("audio.mp3")
+    os.system("mpg321 audio.mp3")
 
 
 def recordAudio():
     # Record Audio
     r = sr.Recognizer()
-    print(dir(r))
     with sr.Microphone() as source:
         print("Say something!")
         audio = r.listen(source)
-
 
     # Speech recognition using Google Speech Recognition
     data = ""
@@ -43,21 +38,17 @@ def recordAudio():
 
 ingredient = []
 
-def recipe_recorder():
-    pass
-
-def baker_joe(data):
+def jarvis(data):
     if 'record' in data:
         speak('recording, say starting with "ingredient" or "step"')
-        recipe_recorder()
+
     if 'ingredient' in data:
         ingredient.append(data)
         speak('next ingredient?')
 
     if "done" in data:
-        speak("OK, if you say your are done, I am wrapping up")
-
-        done = True
+        speak("OK, done")
+        print(ingredient)
 
     if "what time is it" in data:
         speak(ctime())
@@ -65,7 +56,7 @@ def baker_joe(data):
     if "where is" in data:
         data = data.split(" ")
         location = data[2]
-        speak("Hold on Lilit, I will show you where " + location + " is.")
+        speak("Hold on Frank, I will show you where " + location + " is.")
         os.system("chromium-browser https://www.google.nl/maps/place/" + location + "/&amp;")
     if "get" and "recipe" in data:
         data = data.split(" ")
@@ -81,10 +72,7 @@ def baker_joe(data):
 
 # initialization
 time.sleep(2)
-
 speak("Hi Lilit, what can I do for you?")
-while True:
-    if done is True:
-        exit(0)
+while 1:
     data = recordAudio()
-    baker_joe(data)
+    jarvis(data)

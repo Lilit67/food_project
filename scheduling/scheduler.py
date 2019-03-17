@@ -5,6 +5,9 @@ import logging
 import argparse
 import json
 
+from recipe_step_manager import RecipeStepManager
+from step import Step
+
 # name, interval, stretch, active
 recipe_schedule = [('premix', 30, 8*60, False),
                    ('StretchFold', 150, 60, True),
@@ -131,66 +134,6 @@ class BakerTimeManager:
 
         return False
 
-
-class Step:
-    def __init__(self, step_name, interval, connected, active):
-        self.step_name = step_name
-        self.interval = self.to_seconds(interval)
-        self.next_step = None
-        self.stretch = self.to_seconds(connected)
-        self.active_step = active
-        self.completed = False
-
-    def __str__(self):
-        return self.step_name
-
-    def to_seconds(self, input, unit='min'):
-        """
-        Convert to seconds
-        :param input:
-        :param unit:
-        :return:
-        """
-        if unit == 'min':
-            return input * 60
-        elif unit == 'seconds':
-            return input
-        elif unit == 'hours':
-            return input * 60 * 60
-        elif unit == 'days':
-            return input * 60 * 60 * 24
-        else:
-            raise Exception('Larger than days input is not supported')
-
-class RecipeStepManager:
-    def __init__(self):
-        self.time_unit = 'minutes'
-        self.steps = []
-
-
-    def to_seconds(self, input, unit='min'):
-        """
-        Convert to seconds
-        :param input:
-        :param unit:
-        :return:
-        """
-        if unit == 'min':
-            return input * 60
-        elif unit == 'seconds':
-            return input
-        elif unit == 'hours':
-            return input * 60 * 60
-        else:
-            raise Exception('For now days conversion is not supported')
-
-    def add_step(self, name, interval, connected=False, active=True):
-        step = Step(name, interval, connected, active)
-        self.steps.append(step)
-
-    def construct(self, recipe_schedule):
-        for rep in recipe_schedule:
-            self.add_step(rep[0], rep[1], rep[2], rep[3])
 
 
 class Scheduler:
