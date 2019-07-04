@@ -1,0 +1,11 @@
+TODO
+
+- db support
+- db: sqlite3
+- define tables
+- excel to db enter
+- csv to db
+- web ui
+- js support for web?
+- ineractive pages
+- back-end for

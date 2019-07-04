@@ -9,6 +9,7 @@ class WaterTemperatureCalculator:
     def water_temp_preferment(desired_dough_temp, room_temp, flour_temp,
                    preferment_temp, mixing_friction, scale='F'):
         """
+        TODO: what is the source of this info?
         Smart function to calculate optimal water temperature
         :param input1:
         :param input2:

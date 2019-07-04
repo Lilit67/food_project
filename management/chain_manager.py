@@ -1,6 +1,5 @@
 import os
 import logging
-#from executables.recipe import Recipe
 
 class Node:
     def __init__(self, val):
@@ -109,7 +108,7 @@ class RecipeTree:
 def parse_options():
     parser = argparse.ArgumentParser(description='Calculate recipe')
     parser.add_argument('-w', "--workbook",  metavar='filepath', type=str,
-                        help='file path')
+                        help='CSV file path')
     parser.add_argument('--sheet',  metavar='sheet', type=str,
                         help='sheet name')
     parser.add_argument('--sum', dest='accumulate', action='store_const',
