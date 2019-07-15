@@ -1,16 +1,21 @@
 
 # dry is flours only
-flours = ['wheat flour', 'AP flour', 'bread flour', 'rye flour', 'rye', 'wheat',
-       'oat flour', 'oats', 'flour',
-       'all purpose flour, white',
-       'white flour', 'whole wheat flour',
-       'white wheat flour', 'high gluten', 'bakers flour',
+flours = ['wheat flour', 'AP flour', 'bread flour', 'rye flour',
+          'rye', 'wheat',
+          'oat flour', 'oats', 'flour',
+          'all purpose flour, white',
+          'white flour', 'whole wheat flour',
+          'white wheat flour', 'high gluten', 'bakers flour',
           'high extraction flour',
           'white wheat flour (bread flour)',
           'white wheat flour(bread flour) (100 %)',
           'Bread flour', '50/50 blend flour', 'All purpose flour',
           'All-purpose flour', 'whole rye flour', 'white bread flour',
-          'pizza flour Caputo red', '00 tipo']
+          'pizza flour Caputo red', '00 tipo', 'high extraction',
+          'kamut', 'eikhorn', 'barley',
+          'brown rice flour', 'white whole what flour',
+          'King Arthur (14%)', 'Arrowhead Mills Wholemeal Wheat', 'Arrowhead Mills Wholemeal Spelt',
+          ]
 
 # rest of dry ingredients
 condiments = ['salt', 'sugar', 'kosher salt',
@@ -31,7 +36,8 @@ non_usda = ['water', 'starter', 'salt']
 starter = ['starter', 'white starter',
            'whole wheat starter',
            'gf starter', 'levain',
-           'poolish', 'leaven', 'starter 100%', 'starter 50/50',
+           'poolish', 'leaven', 'starter 100%',
+           'starter 50/50',
            '50-50 starter']
 
 # oils, should also go as wet

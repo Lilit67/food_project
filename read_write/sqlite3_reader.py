@@ -3,12 +3,50 @@ import sqlite3
 import argparse
 
 from excel_reader import ExcelReader
+from csv_reader import CSVReader
+from text_reader import TextReader
 
 
-class Sqlite3Reader(object):
+class Reader:
+    def __init__(self, filepath):
+        self.filepath = filepath
+        self.filetype = None
+        self.data = None
+        self.steps = None
+        self.steps = None
+
+    def read(self):
+        if not os.path.exists(self.filepath):
+            raise Exception("File not found {}".format(self.filepath))
+        self.filetype = os.path.splitext(self.filepath)[1]
+        if self.filetype == '.xls':
+            # read excel sheets, these are expected to be there, TODO: error if not
+            ingredient_reader = ExcelReader(self.filepath, 'ingredients')
+            step_reader = ExcelReader(self.filepath, 'steps')
+            data_reader = ExcelReader(self.filepath, 'data')
+            # get as dataframes
+            ingredients = ingredient_reader.read_xl()
+            self.ingredients = ingredients.fillna(0)
+            steps = step_reader.read_xl()
+            self.steps = steps.fillna(0)
+            self.data = data_reader.read_xl()
+        elif self.filetype == '.txt':
+            reader = TextReader(self.filepath)
+            self.data = reader.read()
+        elif self.filetype == '.csv':
+            reader = CSVReader(self.filepath)
+            self.data = reader.read()
+        else:
+            raise Exception("Incorrect file type {}".format(self.filetype))
+
+        return self.data
+
+
+
+class DBManager(object):
     """ Manages the database info """
 
-    def __init__(self, dbpath='recipe.db'):
+    def __init__(self, dbpath='recipe67.db'):
         self.dbpath = dbpath
         self.connection = sqlite3.connect(dbpath)
 
@@ -22,6 +60,7 @@ class Sqlite3Reader(object):
                       "recipe_name VARCHAR(255), category VARCHAR(255), " \
                       "tags VARCHAR(255))".format(table_name)
             cursor.execute(command)
+            cursor.commit()
 
     def create_recipes_table(self):
         """
@@ -30,8 +69,7 @@ class Sqlite3Reader(object):
         """
         cursor = self.connection.cursor()
 
-        command = "CREATE TABLE if not exists recipes (indexi INT AUTO_INCREMENT, " \
-                  "recipe_id VARCHAR(255) PRIMARY KEY, " \
+        command = "CREATE TABLE if not exists recipes (id INT PRIMARY KEY, " \
                   "recipe_name VARCHAR(255), " \
                   "source_file_path VARCHAR(255), " \
                   "source_file_type VARCHAR(255))"
@@ -45,7 +83,8 @@ class Sqlite3Reader(object):
         """
         cursor = self.connection.cursor()
 
-        command = "CREATE TABLE if not exists ingredients (id INTEGER PRIMARY KEY, " \
+        command = "CREATE TABLE if not exists ingredients " \
+                  "(id INTEGER PRIMARY KEY, " \
                   "recipe_id VARCHAR(255), " \
                   "recipe_step_id INTEGER, " \
                   "ingredient_name VARCHAR(255), " \
@@ -103,19 +142,20 @@ class Sqlite3Reader(object):
     def insert_recipe(self, recipe_id, recipe_name,
                       source_file_path, source_file_type):
         """
-        index	recipe_id	recipe_name	source_file_path	source_file_type
+        id	recipe_name	source_file_path	source_file_type
         :param conn:
         :param project:
         :return: project id
         """
-        recipe = (recipe_id, recipe_name, source_file_path, source_file_type)
-        sql = ''' INSERT INTO recipes(recipe_id, recipe_name,source_file_path, source_file_type)
-                  VALUES(?,?,?,?) '''
+        recipe = (recipe_name, source_file_path, source_file_type)
+        sql = ''' INSERT INTO recipes(recipe_name,source_file_path, source_file_type)
+                  VALUES(?,?,?) '''
         cur = self.connection.cursor()
         try:
             cur.execute(sql, recipe)
             return cur.lastrowid
         except sqlite3.IntegrityError as e:
+            print(e)
             print('Record with id {} already in table "recipes"'.format(recipe_id))
 
     def insert_ingredient(self, recipe_id,
@@ -189,7 +229,7 @@ class Sqlite3Reader(object):
         try:
             conn = sqlite3.connect(db_file)
             return conn
-        except Error as e:
+        except Exception as e:
             print(e)
 
         return None
@@ -230,13 +270,14 @@ class Sqlite3Reader(object):
         records = cursor.execute(cmd)
         return records.fetchall()
 
-def record_ingredients(picker, ingredients, recipe_id):
+def record_ingredients_pandas(picker, ingredients, recipe_id):
     """
     dataframe to db
     :param ingredients:
     :return:
     """
     columns = list(ingredients.columns.values)
+
 
     if not columns == ['index', 'recipe_id', 'recipe_step_id', 'ingredient_name', 'amount', 'unit']:
         raise Exception('Incorrect recipe entries given: {}'.format(columns))
@@ -246,6 +287,12 @@ def record_ingredients(picker, ingredients, recipe_id):
         record = record.tolist()
         picker.insert_ingredient(recipe_id=record[1], recipe_step_id=record[2],
                                  ingredient_name=record[3], amount=record[4], unit=record[5])
+
+def record_ingredients(picker, ingredients, recipe_id):
+    for i in ingredients:
+        picker.insert_ingredient(recipe_id=recipe_id, recipe_step_id=1,
+                                 ingredient_name=i.name, amount=i.amount,
+                                 unit=i.unit)
 
 def record_steps(picker, steps, recipe_id):
     """
@@ -336,48 +383,45 @@ def main():
     args = parse_options()
 
     # Database init, empty tables, only once needed
-    picker = Sqlite3Reader(args.db)
+    picker = DBManager(args.db)
     picker.create_recipes_table()
     picker.create_ingredients_table()
     picker.create_steps_table()
     picker.create_data_table()
 
-    # read excel sheets, these are expected to be there, TODO: error if not
-    ingredient_reader = ExcelReader(args.recipe_path, 'ingredients')
-    step_reader = ExcelReader(args.recipe_path, 'steps')
-    data_reader = ExcelReader(args.recipe_path, 'data')
+
+    recipe_file = args.recipe_path
+    try:
+        reader = Reader(recipe_file)
+        data = reader.read()
+        print(data)
+
+        # insert recipe record first
+        recipe_path = os.path.abspath(args.recipe_path)
+        recipe_dir, extension = os.path.splitext(recipe_path)
+        recipe_name = os.path.split(recipe_dir)[1]
+        recipe_id = recipe_name
+        print('Recipe name is {}'.format(recipe_name))
+        picker.insert_recipe(recipe_id, recipe_name, recipe_path, extension)
+
+        # Add ingredients
+        record_ingredients(picker, data.ingredients, recipe_id)
+        # Add steps
+        if False:
+            record_steps(picker, steps, recipe_id)
+
+            # Add data
+            record_data(picker, data, recipe_id)
 
 
-    # get as dataframes
-    ingredients = ingredient_reader.read_xl()
-    ingredients = ingredients.fillna(0)
-    steps = step_reader.read_xl()
-    steps = steps.fillna(0)
-    data = data_reader.read_xl()
+        print(picker.list_table('recipes'))
+        print('Tables in db {}'.format(picker.show_tables()))
+        print('Showing records in table "ingredients" {}'.format(picker.list_table('ingredients')))
 
-    # insert recipe record first
-    recipe_path = os.path.abspath(args.recipe_path)
-    recipe_dir, extension = os.path.splitext(recipe_path)
-    recipe_name = os.path.split(recipe_dir)[1]
-    recipe_id = recipe_name
-    print('Recipe name is {}'.format(recipe_name))
-    picker.insert_recipe(recipe_id, recipe_name, recipe_path, extension)
-
-    # Add ingredients
-    record_ingredients(picker, ingredients, recipe_id)
-    # Add steps
-    record_steps(picker, steps, recipe_id)
-
-    # Add data
-    record_data(picker, data, recipe_id)
-
-
-    print(picker.list_table('recipes'))
-    print('Tables in db {}'.format(picker.show_tables()))
-    print('Showing records in table "ingredients" {}'.format(picker.list_table('ingredients')))
-
-    print('Showing records in table "steps" {}'.format(picker.list_table('steps')))
-
+        print('Showing records in table "steps" {}'.format(picker.list_table('steps')))
+    except Exception:
+        import traceback
+        traceback.print_exc()
 
 
 

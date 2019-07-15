@@ -1,23 +1,30 @@
 import pandas as pd
-import requests
-import json
-import argparse
-import logging
 import os
-import xlsxwriter
-from management.chain_manager import RecipeTree
-from constants.column_names import ColumnNames as cn
+
+from analyzing.yeast_to_sourdough import Ingredients, RecipeIngredient
 
 class CSVReader:
-    def __init__(self, options):
-        self.file = options.csv
-        self.df = CSVReader.read_csv(self.file)
+    def __init__(self, filepath):
+        self.filepath = filepath
 
-    @classmethod
-    def read_csv(cls, input_path):
-        df = pd.read_csv(input_path)
 
-        return df
+    def read(self):
+        self.data = pd.read_csv(self.filepath)
+        return self.data
 
-    def write_csv(self, df):
-        return NotImplemented
+
+
+
+
+
+
+def main():
+    f = './recipes/baguettes/tartine_baguette.txt'
+    data = []
+    with open(f, 'r') as myfile:
+        data = myfile.readlines()
+    print(data)
+
+
+if __name__ == '__main__':
+    main()
