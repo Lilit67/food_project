@@ -1,7 +1,11 @@
 import os
-from analyzing.yeast_to_sourdough import Ingredients, RecipeIngredient
+
 from nltk import word_tokenize
 from nltk.corpus import stopwords
+
+from analyzing.recipe_ingredient import RecipeIngredient
+from analyzing.base_ingredients import Ingredients
+
 
 class TextReader:
     def __init__(self, filepath):
@@ -15,8 +19,8 @@ class TextReader:
 
         with open(self.filepath, 'r') as myfile:
             self.data = myfile.readlines()
-        self.set_data()
-        return self.ingredients
+        #self.set_data()
+        return self.data
 
 
     def set_data(self):
@@ -39,3 +43,28 @@ class TextReader:
         print(self.ingredients)
 
 
+def line_features(word):
+    """
+    '10% Arrowhead Mills Wholemeal Wheat\n'
+    :param word:
+    :return:
+    """
+    tokens = word_tokenize(word)
+    if len(tokens) >= 2:
+        return {'last_letter': tokens[1]}
+    return ''
+
+
+def main():
+    f = './recipes/baguettes/tartine_baguette3.txt'
+    reader = TextReader(f)
+    data = reader.read()
+    print(data)
+    for line in data:
+        res = line_features(line)
+        print('GOt {}'.format(res))
+
+
+
+if __name__ == '__main__':
+    main()

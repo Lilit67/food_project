@@ -10,7 +10,7 @@ from nutrient.ingredients import milk as MILK
 from nutrient.ingredients import salt as SALT
 from utilities.helpers import percentage
 
-from recipe_ingredient import RecipeIngredient
+from analyzing.recipe_ingredient import RecipeIngredient
 
 class Ingredients(object):
     def __init__(self):

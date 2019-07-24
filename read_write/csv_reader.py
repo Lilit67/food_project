@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-from analyzing.yeast_to_sourdough import Ingredients, RecipeIngredient
+#from analyzing.yeast_to_sourdough import Ingredients, RecipeIngredient
 
 class CSVReader:
     def __init__(self, filepath):
@@ -12,18 +12,11 @@ class CSVReader:
         self.data = pd.read_csv(self.filepath)
         return self.data
 
-
-
-
-
-
-
 def main():
-    f = './recipes/baguettes/tartine_baguette.txt'
-    data = []
-    with open(f, 'r') as myfile:
-        data = myfile.readlines()
-    print(data)
+    f = './recipes/baguettes/tartine_baguette3.txt'
+    reader = CSVReader(f)
+    data = reader.read()
+    print(dir(data))
 
 
 if __name__ == '__main__':
