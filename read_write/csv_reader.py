@@ -1,7 +1,6 @@
 import pandas as pd
 import os
 
-#from analyzing.yeast_to_sourdough import Ingredients, RecipeIngredient
 
 class CSVReader:
     def __init__(self, filepath):

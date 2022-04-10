@@ -6,6 +6,7 @@ import argparse
 import logging
 import os
 import xlsxwriter
+import copy
 from management.chain_manager import RecipeTree
 from constants.column_names import ColumnNames as cn
 from read_write.excel_reader import ExcelReader
@@ -112,7 +113,7 @@ class Recipe(object):
         # smart calculation? Think about it
         pass
 
-    def scale_ingredients_df(times):
+    def scale_ingredients_df(self, times):
         """
         Scale ingredients,
         simple scaling
@@ -139,7 +140,7 @@ class Recipe(object):
         :param val:
         :return:
         """
-        print(row, col, val, df)
+        print(col, val, df)
         if not isinstance(df, pd.DataFrame):
            raise Exception("First paramemter should be of type dataframe")
         #df.loc['[21-23)', 'M', '[10000-20000)'] = 2

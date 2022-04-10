@@ -1,0 +1,46 @@
+525 g Spring water at 78ºF/26ºC
+ 2.50 g Instant yeast or 5g fresh yeast
+ 550 g Levain
+ 22 g Salt
+ 500 g Bread flour
+ 160 g 100% stone ground whole wheat flour
+
+525 + 275 water = 800 g water
+
+275 + 500 + 160 = 1210 g flour
+
+1210 = 100
+800 = x
+
+x= 80000 / 1210 = 66 %
+
+================
+half
+
+262 gr water
+275 gr levain
+11 gr salt
+250 bread flour
+80 gr whole wheat flour
+
+132 + 132 water  =  265 water
+132 + 125 + 40 wheat = 295 wheat
+
+=================
+ 4th
+ ====================
+135 g water
+137.5 levain
+ 9 gr salt
+125 bread flour
+ 40 g whole wheat flour
+---------------------
+135 + 70  = 205 total water
+--------------------
+ total flour 302
+ total water 205
+
+302 = 100
+205 = x
+
+x = 268 * 100 / 302 = 67 % hydration

@@ -59,8 +59,8 @@ class UsdaReader:
             info = json.load(fp)
             return info
 
-    def pretty_print(self, item):
-        print(json.dumps(item, indent=4))
+    def pretty_print(self, data):
+        print(json.dumps(data, indent=4))
 
 
     def adjusted_item_name(self, item_name):
@@ -125,3 +125,37 @@ class UsdaReader:
                 return product
         return None
 
+    def get_similars(self, usda_item):
+        """
+        Get the USDA code
+        First get the
+        exact product, then get the
+        code
+        :param name:
+        :return:
+        """
+        code = None
+        group = usda_group_item_map
+        product_list = self.nu.searchFor(usda_item).get('list')
+        items = []
+        if product_list:
+            items = product_list.get('item')
+        print(items)
+        return items
+
+def main():
+    item_name = 'wheat flour'
+    #f = './recipes/croissants/croissant_sourdough.xlsx'
+    reader = UsdaReader()
+    #data = reader.get_usda_group('flour')
+    #print(data)
+    data = reader.get_similars(item_name)
+    reader.pretty_print(data)
+    pth = reader.cache_path(item_name)
+    reader.nu.serialize(pth, data)
+
+
+
+
+if __name__ == '__main__':
+    main()

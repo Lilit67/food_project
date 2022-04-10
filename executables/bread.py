@@ -7,10 +7,10 @@ import logging
 import math
 import copy
 
-from recipe import Recipe
+from executables.recipe import Recipe
 from constants.column_names import ColumnNames as cn
 from constants.units import Units as unit
-from constants.hydration import Hydration
+#from constants.hydration import Hydration
 from nutrient.foodinfo import Nutrient
 from nutrient.usda_reader import UsdaReader
 from nutrient.ingredients import flours, wet, starter

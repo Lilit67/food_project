@@ -1,6 +1,7 @@
 import logging
 import argparse
 import json
+import traceback
 
 from executables.bread import Bread
 from management.chain_manager import ChainManager, RecipeTree
@@ -9,7 +10,10 @@ logger = logging.getLogger()
 
 def parse_options():
     parser = argparse.ArgumentParser(description='Calculate recipe')
-    parser.add_argument('-w', "--workbook",  metavar='filepath', type=str,
+    parser.add_argument('-w', "--workbook",
+                        metavar='filepath',
+                        type=str,
+                        required=True,
                         help='file path')
     parser.add_argument('--sheet',  metavar='sheet', type=str,
                         help='sheet name')
@@ -61,7 +65,7 @@ def main():
         bread.df_to_csv('./output/recipe.csv')
     except Exception as e:
 
-        import traceback
+
         traceback.print_exc()
         exit(-1)
 

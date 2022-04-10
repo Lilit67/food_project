@@ -1,317 +1,257 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a8d24955-d43a-4349-bb6a-2a853eff993d" name="Default" comment="First version of scheduler">
-      <change afterPath="$PROJECT_DIR$/analyzing/yeast_to_sourdough.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/beignets_sourdough_1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/experience/bread/bread_baking_sequential/easy_favorite_facebook_2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/experience/bread/bread_baking_sequential/easy_white.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/experience/bread/high_hydration/shaping.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/experience/bread/high_hydration/whole_foods_flour.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/executables/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/executables/recipe_picker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipes/doughnuts/ricotta_doughnuts.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipes2/excel/one_recipe.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/formats/excel/one_recipe.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/formats/text/gluten_free_sourdough_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes2/text/gluten_free_sourdough_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/formats/text/perfect_sourdough_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes2/text/perfect_sourdough_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/formats/text/rye_quinoa_sourdough.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes2/text/rye_quinoa_sourdough.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/management/chain_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/management/chain_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutrient/ingredients.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutrient/ingredients.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipes/white/White_wild_yeast_favorite.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/white/White_wild_yeast_favorite.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/varieties/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzing/hydration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/varieties/bread.py" beforeDir="false" afterPath="$PROJECT_DIR$/executables/bread.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/varieties/recipe.py" beforeDir="false" afterPath="$PROJECT_DIR$/executables/recipe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/varieties/user_interaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/executables/user_interaction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/executables/canonize_bread.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/read_write/browse_recipes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/GF_bagels.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/GF_doughnuts_2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/GF_flour_mixes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/GF_frui_tart.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/GF_rolls_artisan.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/hugbakery.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/mygf1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/olive_gf_yeasted.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/roman2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/roman_experiment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/GF/romans_best_sourdough.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/bagel/bagel1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/baguettes/bake_with_jack.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/boule/caleb1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/boule/gina_country.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/boule/oval_boulee.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/boule/semola_bread.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/brioche/easy_no_knead_brioche.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/brioche/sandwich_with_raisins.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/ciabatta/sourdough_ciabatta1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/country/bruno_country.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/matnakash/focaccia_katnahunc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/soft_breads/soft_sorudough_loaf_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/white/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/bread/white/vegan_milk_bread.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/cakes/banana_custard_cake.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/cakes/medovi_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/croissants/croissants#.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/croissants/lilit_sourdough_croissants.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/enriched/no_knead_sourdough_brioche.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/enriched/svetozara_pennetone.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/multiple/caramel_cookies.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/multiple/choux.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/multiple/oat_porridge_honey_loaf.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/multiple/pullman_shuly.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/multiple/sourdough_challah.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/patisserie/bruno/crunchy_chocolate.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilities/text_recipe_scaler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.cache/v/cache/lastfailed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/food_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/food_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzing/hydration.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzing/watercontent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzing/water_temperature_calculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzing/water_temperature_calculator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzing/yeast_to_sourdough.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyzing/yeast_to_sourdough.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/experience/bread/bread_baking_sequential/easy_favorite_facebook_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/experience/bread/bread_baking_sequential/easy_favorite_facebook_2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/experience/bread/high_hydration/shaping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/experience/bread/high_hydration/shaping.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/experience/bread/high_hydration/whole_foods_flour.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/experience/bread/high_hydration/whole_foods_flour.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/bread.py" beforeDir="false" afterPath="$PROJECT_DIR$/executables/bread.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/recipe.py" beforeDir="false" afterPath="$PROJECT_DIR$/executables/recipe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/user_interaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/executables/user_interaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutrient/foodinfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutrient/foodinfo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutrient/usda_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutrient/usda_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read_write/csv_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_write/csv_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read_write/excel_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_write/excel_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read_write/text_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_write/text_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/baguettes/tartine_baguette.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/baguettes/tartine_baguette.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/baguettes/tartine_baguette2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/baguettes/tartine_baguette2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/baguettes/tartine_baguette3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/baguettes/tartine_baguette3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/boule/german_brott.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/boule/german_brott.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/boule/oval_boulee.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/boule/spelt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/boule/spelt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/croissants/sourdough_croissant_community.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/croissants/sourdough_croissant_community.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/matnakash/matnakash.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/matnakash/matnakash.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/tartine/whole_wheat_einkorn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/tartine/whole_wheat_einkorn.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/My_New_Favorite_Sourdough.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/My_New_Favorite_Sourdough.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/White_wild_yeast_favorite.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/White_wild_yeast_favorite.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/KB/statyer.yxy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/fabio_florentino_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/fabio_florentino_2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/facebook_recipes.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/facebook_recipes.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/focaccia_90_breadcalc.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/focaccia_90_breadcalc.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/french_bukhanka.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/french_bukhanka.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/kopitiam.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/kopitiam.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/milk_tanjong.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/milk_tanjong.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/sourdough_croissant.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/sourdough_croissant.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/tartine_oatmeal.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/tartine_oatmeal.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/white_favorite.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/white_favorite.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/white_favorite_new.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/white_favorite_new.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/white_sourdough_renee_facebook.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/white_sourdough_renee_facebook.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/white/wild_yeast_favorite.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/bread/white/wild_yeast_favorite.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes2/text/rye_quinoa_sourdough.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/multiple/rye_quinoa_sourdough.txt" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="recipe.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/executables/recipe.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3255">
-              <caret line="217" column="38" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bread.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/executables/bread.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="recipe.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/recipe.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_interaction.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/executables/user_interaction.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="yeast_to_sourdough.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analyzing/yeast_to_sourdough.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="9" selection-start-column="9" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="recipe_picker.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/executables/recipe_picker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scheduler.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scheduling/scheduler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="88" column="8" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_scheduler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/unit_tests/test_scheduler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rye_quinoa_sourdough.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recipes2/text/rye_quinoa_sourdough.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="perfect_sourdough_1.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recipes2/text/perfect_sourdough_1.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jupyter Notebook" />
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>weight</find>
-      <find>set_at</find>
-      <find>ite</find>
-      <find>usda</find>
-      <find>_get_matching_records</find>
-      <find>flours_ingredients_weight</find>
-      <find>check_columns</find>
-      <find>After</find>
-      <find>ingredient_weight</find>
-      <find>Flours weight</find>
-      <find>fill_usda</find>
-      <find>hydration</find>
-      <find>set_ingredient_types</find>
-      <find>set_baker</find>
-      <find>is_bread</find>
-      <find>Data</find>
-      <find>wet_weight</find>
-      <find>flours</find>
-      <find>something</find>
-      <find>fit</find>
-      <find>convert_interval</find>
-      <find>calc_schedule</find>
-      <find>my_shedule</find>
-      <find>construct</find>
-      <find>dir</find>
-      <find>schedule_preparation</find>
-      <find>TimeManager</find>
-      <find>to_stages</find>
-      <find>total_timedelta</find>
-      <find>inside</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/nutrient/foodinfo.py" />
-        <option value="$PROJECT_DIR$/knowledge/sourdough/sourness.py" />
-        <option value="$PROJECT_DIR$/knowledge/sourdough/sourness.txt" />
-        <option value="$PROJECT_DIR$/knowledge/sourdough/fiona_GF.txt" />
-        <option value="$PROJECT_DIR$/management/chain_manager.py" />
-        <option value="$PROJECT_DIR$/constants/units.py" />
-        <option value="$PROJECT_DIR$/constants/hydration.py" />
-        <option value="$PROJECT_DIR$/visual/plotting.py" />
-        <option value="$PROJECT_DIR$/converters/eggs.py" />
-        <option value="$PROJECT_DIR$/constants/constant_classes.py" />
-        <option value="$PROJECT_DIR$/snippets/dataframe_ops.py" />
-        <option value="$PROJECT_DIR$/constants/column_names.py" />
-        <option value="$PROJECT_DIR$/voice/speaker.py" />
-        <option value="$PROJECT_DIR$/nutrient/usda_reader.py" />
-        <option value="$PROJECT_DIR$/knowledge/flour_classifier.py" />
-        <option value="$PROJECT_DIR$/snippets/nltk_stuff.py" />
-        <option value="$PROJECT_DIR$/varieties/first_note.ipynb" />
-        <option value="$PROJECT_DIR$/formats/text/perfect_sourdough_1.txt" />
-        <option value="$PROJECT_DIR$/formats/text/rye_quinoa_sourdough.txt" />
-        <option value="$PROJECT_DIR$/texts/white_favorite.txt" />
-        <option value="$PROJECT_DIR$/texts/fabio_florentino_2.txt" />
-        <option value="$PROJECT_DIR$/analyzing/water_temperature_calculator.py" />
-        <option value="$PROJECT_DIR$/formats/text/gluten_free_sourdough_1.txt" />
-        <option value="$PROJECT_DIR$/analyzing/3waySort.txt" />
-        <option value="$PROJECT_DIR$/analyzing/hydration.py" />
-        <option value="$PROJECT_DIR$/analyzing/yeast_to_sourdough.py" />
-        <option value="$PROJECT_DIR$/varieties/recipe.py" />
-        <option value="$PROJECT_DIR$/data/beignets_sourdough_1.txt" />
-        <option value="$PROJECT_DIR$/recipes/doughnuts/ricotta_doughnuts.txt" />
-        <option value="$PROJECT_DIR$/data/experience/bread/high_hydration/whole_foods_flour.txt" />
-        <option value="$PROJECT_DIR$/data/experience/bread/bread_baking_sequential/easy_white.txt" />
-        <option value="$PROJECT_DIR$/data/experience/bread/bread_baking_sequential/easy_favorite_facebook_2.txt" />
-        <option value="$PROJECT_DIR$/nutrient/ingredients.py" />
-        <option value="$PROJECT_DIR$/varieties/bread.py" />
-        <option value="$PROJECT_DIR$/data/experience/bread/high_hydration/shaping.txt" />
-        <option value="$PROJECT_DIR$/varieties/user_interaction.py" />
-        <option value="$PROJECT_DIR$/executables/recipe_picker.py" />
-        <option value="$PROJECT_DIR$/recipes2/text/taiwanese_pineapple_cookies.txt" />
-        <option value="$PROJECT_DIR$/executables/scheduler.py" />
-        <option value="$PROJECT_DIR$/unit_tests/test_scheduler.py" />
-        <option value="$PROJECT_DIR$/executables/user_interaction.py" />
-        <option value="$PROJECT_DIR$/scheduling/scheduler.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="54" />
-    <option name="y" value="24" />
-    <option name="width" value="1350" />
-    <option name="height" value="789" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="food_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="food_project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="food_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="food_project" type="462c0819:PsiDirectoryNode" />
-              <item name="analyzing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="food_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="food_project" type="462c0819:PsiDirectoryNode" />
-              <item name="constants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="food_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="food_project" type="462c0819:PsiDirectoryNode" />
-              <item name="converters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="food_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="food_project" type="462c0819:PsiDirectoryNode" />
-              <item name="executables" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="food_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="food_project" type="462c0819:PsiDirectoryNode" />
-              <item name="scheduling" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="food_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="food_project" type="462c0819:PsiDirectoryNode" />
-              <item name="texts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="food_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="food_project" type="462c0819:PsiDirectoryNode" />
-              <item name="unit_tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1kskBX1tkTdTg6ecOSfwMJoQ9Bi" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/lilit/food_project/executables/user_interaction.py" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/snippets" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/snippets" />
+      <recent name="$PROJECT_DIR$/recipes/baguettes" />
+      <recent name="$PROJECT_DIR$/recipes/croissants" />
+      <recent name="$PROJECT_DIR$/voice" />
+      <recent name="$PROJECT_DIR$/../" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/scheduling" />
-      <recent name="$PROJECT_DIR$/recipes/GF" />
+      <recent name="$PROJECT_DIR$/recipes/bread/bagel" />
+      <recent name="$PROJECT_DIR$/recipes/bread" />
+      <recent name="$PROJECT_DIR$/recipes/web_copy" />
+      <recent name="$PROJECT_DIR$/recipes/multiple/" />
+      <recent name="$PROJECT_DIR$/recipes/multiple" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="RunManager" selected="Python.test_converter">
+    <configuration name="frequencies (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="food_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../PycharmProjects/hydrator/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../frequencies.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="frequencies" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="food_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../PycharmProjects/hydrator/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/recipes2/text" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/recipes2/text/frequencies.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scheduler" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="food_project" />
+      <option name="INTERPRETER_OPTIONS" value="python3" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scheduling" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scheduling/scheduler.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_converter" type="PythonConfigurationType" factoryName="Python">
+      <module name="food_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../opt/anaconda3/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unit_tests/test_yeast_converter.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <module name="food_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../PycharmProjects/hydrator/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/unit_tests/test_yeast_converter.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.test_converter" />
+      <item itemvalue="Python.frequencies (1)" />
+      <item itemvalue="Python.frequencies" />
+      <item itemvalue="Python.scheduler" />
+    </list>
+    <recent_temporary>
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <item itemvalue="Python.frequencies" />
+        <item itemvalue="Python.scheduler" />
+        <item itemvalue="Python.frequencies (1)" />
       </list>
-    </option>
+    </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -361,409 +301,31 @@
     <option name="localTasksCounter" value="6" />
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="54" y="24" width="1350" height="789" extended-state="0" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.25851852" />
-      <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50069445" side_tool="true" weight="0.043356642" />
-      <window_info anchor="bottom" id="Run" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Python Console" order="0" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="5" sideWeight="0.49930555" weight="0.32843137" />
-    </layout>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first time checkin" />
     <MESSAGE value="fixed first part" />
     <MESSAGE value="Speaker to recording dialog, just to save" />
     <option name="LAST_COMMIT_MESSAGE" value="Speaker to recording dialog, just to save" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/executables/bread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="66" column="18" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nutrient/foodinfo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3855">
-          <caret line="261" column="21" selection-start-line="261" selection-start-column="21" selection-end-line="261" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/recipe.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="98" column="20" lean-forward="true" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/bread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5865">
-          <caret line="402" selection-start-line="402" selection-end-line="413" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nutrient/usda_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="49" column="20" lean-forward="true" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/management/chain_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nutrient/foodinfo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3855">
-          <caret line="261" column="21" selection-start-line="261" selection-start-column="21" selection-end-line="261" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/recipe.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="98" column="20" lean-forward="true" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/bread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5865">
-          <caret line="402" selection-start-line="402" selection-end-line="413" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nutrient/usda_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="49" column="20" lean-forward="true" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/management/chain_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/knowledge/sourdough/sourness.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/knowledge/sourdough/fiona_GF.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="92" selection-start-line="21" selection-start-column="92" selection-end-line="21" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nutrient/foodinfo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="913">
-          <caret line="430" column="26" selection-start-line="430" selection-start-column="26" selection-end-line="430" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visual/plotting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/constants/hydration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/management/chain_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="138" column="9" selection-start-line="138" selection-start-column="4" selection-end-line="138" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/constants/constant_classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/converters/eggs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/constants/units.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/constants/column_names.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/voice/speaker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nutrient/usda_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/knowledge/flour_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snippets/nltk_stuff.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/texts/white_favorite.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snippets/dataframe_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analyzing/3waySort.txt" />
-    <entry file="file://$PROJECT_DIR$/analyzing/water_temperature_calculator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="23" lean-forward="true" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analyzing/hydration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recipes/doughnuts/ricotta_doughnuts.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="92" lean-forward="true" selection-start-line="19" selection-start-column="92" selection-end-line="19" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/experience/bread/bread_baking_sequential/easy_white.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="48" lean-forward="true" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/beignets_sourdough_1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="141" selection-start-line="15" selection-start-column="141" selection-end-line="15" selection-end-column="141" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nutrient/ingredients.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/first_note.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/experience/bread/high_hydration/whole_foods_flour.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="35" selection-start-column="35" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/experience/bread/high_hydration/shaping.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/recipe.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/experience/bread/bread_baking_sequential/easy_favorite_facebook_2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="43" lean-forward="true" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analyzing/yeast_to_sourdough.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recipes/GF/gluten_free_sourdough_1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="29" lean-forward="true" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recipes2/text/perfect_sourdough_1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/texts/fabio_florentino_2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recipes2/text/rye_quinoa_sourdough.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recipes2/text/taiwanese_pineapple_cookies.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/bread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/recipe.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3255">
-          <caret line="217" column="38" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/user_interaction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/recipe_picker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/unit_tests/test_scheduler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/scheduler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="88" column="8" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="459" y="262" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1631719602542">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="459" y="262" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1440.875@0.25.1440.875" timestamp="1631719602542" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/voice/speaker.py</url>
+          <line>4</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyzing/watercontent.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

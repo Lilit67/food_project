@@ -302,7 +302,7 @@ class Nutrient(object):
     def serialize(self, filename, query_result):
         '''
         '''
-        with open(filename) as f:
+        with open(filename, 'w') as f:
             #json.dump(jsonobj, f, indent=4)
             json.dump(query_result.json(), f, indent = 4)
 

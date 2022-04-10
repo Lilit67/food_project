@@ -1,10 +1,10 @@
-from nltk import word_tokenize
+
 import logging
 import copy
 
 
-from base_ingredients import Ingredients
-from recipe_ingredient import RecipeIngredient
+from analyzing.base_ingredients import Ingredients
+from analyzing.recipe_ingredient import RecipeIngredient
 
 class YeastToSourdough:
 
